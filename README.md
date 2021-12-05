@@ -293,7 +293,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 ### M1
 
 * Configure the Project
-* Configure sprites
+* Configure Sprites
 * Configure Unity TileMap
 
 ### M2
