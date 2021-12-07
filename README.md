@@ -298,7 +298,56 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
 ### M2
 
-* TBD
+* Player
+  * Movement
+  * Run
+  * Jump
+  * Jump Release
+
+* Environment
+  * Floor
+
+* Debug Level
+
+### M3
+
+- Player
+  - Attack
+  - Weapons
+    - Range
+    - Bullet
+    - Melee
+  - Weapon Pickup
+- Dummy Enemy
+  - Life
+
+### M4
+
+- Enemy01
+- Enemy02
+- Player
+  - Life
+  - Damage
+  - Invulnerability
+  - Death
+- UI Main Menu
+  - Start Game
+  - Exit
+- Game Over
+- GUI Player Life
+
+### M5
+
+- Level Design
+  - Area 1
+- Environment
+  - Doors
+  - Keys
+  - Boxes
+- Player
+  - Push Boxes
+  - Inventory
+- GUI Inventory
 
 
 
