@@ -210,13 +210,15 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
       Float | Moving distance.
 
+   5. ### Pressure Plate
+
+      When the Player stands in it, activates any Moving Platform.
+
    5. ### Normal Platforms
 
       Platform suspended in the air.
 
-   6. ### Floor
-
-      
+   7. ### Floor
 
 4. ### UI
 
@@ -349,5 +351,31 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Inventory
 - GUI Inventory
 
+### M6
 
+- Level Design
+  - Area 2
+- Environment
+  - Normal Platforms
+  - Moving Platforms
+  - Pressure Plate
+
+### M7
+
+- Level Design
+  - Area 3
+- UI Main Menu
+  - Options
+  - Credits
+- UI Options
+- UI Credits
+- UI Pause Menu
+  - Resume
+  - Exit
+
+### M8
+
+- Boss
+- GUI Boss Life
+- UI Thank You
 
