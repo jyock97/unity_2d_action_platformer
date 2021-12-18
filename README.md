@@ -292,14 +292,14 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
 ## Milestones
 
-- [x] ### M1
+### M1 [X]
 
 
 * Configure the Project
 * Configure Sprites
 * Configure Unity TileMap
 
-- [x] ### M2
+### M2 [X]
 
 
 * Player
@@ -313,7 +313,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
 * Debug Level
 
-- [ ] ### M3
+### M3
 
 
 - Player
@@ -326,7 +326,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 - Dummy Enemy
   - Life
 
-- [ ] ### M4
+### M4
 
 
 - Enemy01
@@ -342,7 +342,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 - Game Over
 - GUI Player Life
 
-- [ ] ### M5
+### M5
 
 
 - Level Design
@@ -356,7 +356,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Inventory
 - GUI Inventory
 
-- [ ] ### M6
+### M6
 
 
 - Level Design
@@ -366,7 +366,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Moving Platforms
   - Pressure Plate
 
-- [ ] ### M7
+### M7
 
 
 - Level Design
@@ -380,7 +380,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Resume
   - Exit
 
-- [ ] ### M8
+### M8
 
 
 - Boss
