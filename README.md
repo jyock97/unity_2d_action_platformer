@@ -32,7 +32,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
    1. ### Life
 
-      The Player has life base on a numeric value
+      The Player has a life based on a numeric value
 
       **Custom Values:**
 
@@ -42,13 +42,13 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
       The Player can be damaged by enemies. Reducing her Life amount by 1.
 
-      After receiving damage, the player become invulnerable.
+      After receiving damage, the player becomes invulnerable.
 
-      When the Life get to 0, the player die.
+      When the Life gets to 0, the player dies.
 
    3. ### Invulnerability
 
-      The Player will no receive damage for an amount of time.
+      The Player will not receive damage for an amount of time.
 
       **Custom Values:**
 
@@ -56,7 +56,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
    4. ### Death
 
-      When the life of the Player gets to 0, the Player die.
+      When the life of the Player gets to 0, the Player dies.
 
       Transition to the Game Over Menu.
 
@@ -70,7 +70,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
    6. ### Run
 
-      [Action: *Run*] The Player move faster by a multiplier amount.
+      [Action: *Run*] The Player moves faster by a multiplier amount.
 
       **Custom Values:**
 
@@ -86,7 +86,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
    8. ### Jump Release
 
-      [Action Release: *Jump*] The Player can reset the Jump by releasing the Jump Action. This cause the Player to stop going upwards. Or do nothing if the Player is falling.
+      [Action Release: *Jump*] The Player can reset the Jump by releasing the Jump Action. This causes the Player to stop going upwards. Or do nothing if the Player is falling.
 
    9. ### Crouch
 
@@ -104,7 +104,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
    12. ### Attack
 
-       [Action: *Attack*] The Player do the an action based on the current weapon she is carrying. The attack has a delay between consecutive attacks.
+       [Action: *Attack*] The Player does an action based on the current weapon she is carrying. The attack has a delay between consecutive attacks.
 
        **Custom Values:**
 
@@ -114,25 +114,25 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
        1. ### Range Weapon
 
-          [Action: *Weapon Select 1*] By pressing the key 1, the Player can select this weapon as the current weapon.
+          [Action: *Weapon Select 1*] By pressing the Key 1, the Player can select this weapon as the current weapon.
 
-          Action: The Weapon spawn a Bullet. Facing the same direction of the Player.
+          Action: The Weapon spawns a Bullet. Facing the same direction as the Player.
 
        2. ### Melee Weapon
 
-          [Action: *Weapon Select 2*] By pressing the key 2, the Player can select this weapon as the current weapon.
+          [Action: *Weapon Select 2*] By pressing the Key 2, the Player can select this weapon as the current weapon.
 
-          Action: The Player do an attack in front of here. Dealing damage to any enemy in front of her.
+          Action: The Player does an attack in front of her. Dealing damage to any enemy in front of her.
 
        3. ### Bullet
 
-          The Bullet travel on a straight line. It will destroy itself when hitting a wall, an object, an enemy or after an amount of time. If it impacts an enemy, it will deal damage.
+          The Bullet travel in a straight line. It will destroy itself when hitting a wall, an object, an enemy, or after an amount of time. If it impacts an enemy, it will deal damage.
 
 2. ### Enemies
 
    1. ### Enemy 01
 
-      The Enemy has life base on a numeric value.
+      The Enemy has life based on a numeric value.
 
       It moves left to right when the Player is not nearby.
 
@@ -160,9 +160,9 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
    3. ### Boss
 
-      The Boss has life base on a numeric value.
+      The Boss has life based on a numeric value.
 
-      It's weakness will change depending on it's State
+      Its weakness will change depending on its State
 
       States
 
@@ -241,12 +241,12 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
       Options:
 
-      * Resume: Closes the Pause Menu and resume the game.
+      * Resume: Closes the Pause Menu and resumes the game.
       * Exit: Back to the Main Menu.
 
    4. ### Thank You Menu
 
-      Menu shown when the Player defeat the Boss.
+      The menu is shown when the Player defeats the Boss.
 
       Options:
 
@@ -254,7 +254,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
    5. ### Game Over Menu
 
-      Displayed when the Player dies. Will open the Main Menu after a few secods.
+      Displayed when the Player dies. Will open the Main Menu after a few seconds.
 
    6. ### GUI Life
 
@@ -266,7 +266,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
    8. ### GUI Boss Life
 
-      Will display the current life of the Boss once the Boss appears in the map.
+      Will display the current life of the Boss once the Boss appears on the map.
 
 5. ### Level Design
 
@@ -292,13 +292,15 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
 ## Milestones
 
-### M1
+### M1 [X]
+
 
 * Configure the Project
 * Configure Sprites
 * Configure Unity TileMap
 
-### M2
+### M2 [X]
+
 
 * Player
   * Movement
@@ -313,6 +315,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
 ### M3
 
+
 - Player
   - Attack
   - Weapons
@@ -324,6 +327,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Life
 
 ### M4
+
 
 - Enemy01
 - Enemy02
@@ -340,6 +344,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
 ### M5
 
+
 - Level Design
   - Area 1
 - Environment
@@ -353,6 +358,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
 ### M6
 
+
 - Level Design
   - Area 2
 - Environment
@@ -361,6 +367,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Pressure Plate
 
 ### M7
+
 
 - Level Design
   - Area 3
@@ -374,6 +381,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Exit
 
 ### M8
+
 
 - Boss
 - GUI Boss Life
