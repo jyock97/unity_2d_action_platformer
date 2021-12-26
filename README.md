@@ -317,12 +317,15 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
 
 - Player
+
+  - Crouch
   - Attack
   - Weapons
     - Range
     - Bullet
     - Melee
   - Weapon Pickup
+
 - Dummy Enemy
   - Life
 
