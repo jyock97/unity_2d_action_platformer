@@ -37,13 +37,13 @@ public class GlobalGizmosControlelr : MonoBehaviour
         if (disableAll)
         {
             SetAll(false);
-            disableAll = false;
+            disableAll = false; // TODO make this Buttons with Custom Editor
         }
 
         if (enableAll)
         {
             SetAll(true);
-            enableAll = false;
+            enableAll = false; // TODO make this Buttons with Custom Editor
         }
         
         SyncValues();

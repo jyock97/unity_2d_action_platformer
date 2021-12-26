@@ -23,15 +23,17 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Vector2 direction = new Vector2();
-        if (!_playerController.isTouchingRightWall && Input.GetKey(KeyCode.D))
+        if (!_playerController.isTouchingRightWall && !_playerController.isCrouching && Input.GetKey(KeyCode.D))
         {
             direction += Vector2.right;
+            _playerController.lookingDirection = Vector2.right;
             _spriteRenderer.flipX = false;
         }
 
-        if (!_playerController.isTouchingLeftWall && Input.GetKey(KeyCode.A))
+        if (!_playerController.isTouchingLeftWall && !_playerController.isCrouching && Input.GetKey(KeyCode.A))
         {
             direction += Vector2.left;
+            _playerController.lookingDirection = Vector2.left;
             _spriteRenderer.flipX = true;
         }
 

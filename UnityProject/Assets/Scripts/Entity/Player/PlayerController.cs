@@ -5,7 +5,10 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public bool isTouchingLeftWall;
     public bool isTouchingRightWall;
-    
+    public bool isCrouching;
+    public Vector2 lookingDirection;
+    public PlayerInventory playerInventory;
+
     private Collider2D _collider;
     private Animator _animator;
     private Bounds _isGroundedBoundsCheck;
@@ -18,10 +21,17 @@ public class PlayerController : MonoBehaviour
         CalculateBounds();
     }
 
+    private void Awake()
+    {
+        playerInventory = new PlayerInventory();
+    }
+
     private void Start()
     {
         _collider = GetComponent<BoxCollider2D>();
         _animator = GetComponent<Animator>();
+        
+        lookingDirection = Vector2.right;
     }
 
     private void Update()
@@ -36,26 +46,27 @@ public class PlayerController : MonoBehaviour
     private void CalculateBounds()
     {
         // Ground bounds
-        Vector2 origin = _collider.bounds.min;
-        origin.x = _collider.bounds.center.x;
+        Bounds bounds = _collider.bounds;
+        Vector2 origin = bounds.min;
+        origin.x = bounds.center.x;
         origin.y -= 0.15f;
-        Vector2 size = _collider.bounds.size;
+        Vector2 size = bounds.size;
         size.y = 0.2f;
         _isGroundedBoundsCheck.center = origin;
         _isGroundedBoundsCheck.size = size;
         
         // Left Wall bounds
-        origin = _collider.bounds.center;
-        origin.x -= _collider.bounds.extents.x + 0.1f;
-        size = _collider.bounds.size;
+        origin = bounds.center;
+        origin.x -= bounds.extents.x + 0.1f;
+        size = bounds.size;
         size.x = 0.1f;
         _isTouchingLeftWallCheck.center = origin;
         _isTouchingLeftWallCheck.size = size;
         
         // Right Wall bounds
-        origin = _collider.bounds.center;
-        origin.x += _collider.bounds.extents.x + 0.1f;
-        size = _collider.bounds.size;
+        origin = bounds.center;
+        origin.x += bounds.extents.x + 0.1f;
+        size = bounds.size;
         size.x = 0.1f;
         _isTouchingRightWallCheck.center = origin;
         _isTouchingRightWallCheck.size = size;
