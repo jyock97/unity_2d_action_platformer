@@ -77,8 +77,10 @@ GameObject:
   - component: {fileID: 3366126324474927380}
   - component: {fileID: 385858016379998052}
   - component: {fileID: 3366126324474927387}
-  - component: {fileID: 1393308811}
   - component: {fileID: 2064256172}
+  - component: {fileID: 1393308811}
+  - component: {fileID: 6923044381481391658}
+  - component: {fileID: 7103969142849050259}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -235,6 +237,8 @@ MonoBehaviour:
   isGrounded: 0
   isTouchingLeftWall: 0
   isTouchingRightWall: 0
+  isCrouching: 0
+  isMeleeAttacking: 0
   lookingDirection: {x: 0, y: 0}
 --- !u!114 &3366126324474927380
 MonoBehaviour:
@@ -275,22 +279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 9.5
---- !u!114 &1393308811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3366126324474927378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5110a97d3135f2642a030f12e6983ce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftBulletSpawn: {fileID: 573882807}
-  rightBulletSpawn: {fileID: 1090695307}
-  bullet: {fileID: 1443302646151123967, guid: c6d25eb669d14ec47853526b5e2feee3, type: 3}
-  animShootingStateWaitTime: 3
 --- !u!114 &2064256172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,3 +291,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f193437be680642b58a0de35ca87d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1393308811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366126324474927378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5110a97d3135f2642a030f12e6983ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6923044381481391658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366126324474927378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e48c6c927e96b489540891645b4818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  leftBulletSpawn: {fileID: 573882807}
+  rightBulletSpawn: {fileID: 1090695307}
+  bullet: {fileID: 1443302646151123967, guid: c6d25eb669d14ec47853526b5e2feee3, type: 3}
+  animShootingStateWaitTime: 2.5
+--- !u!114 &7103969142849050259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366126324474927378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3083fecc7650f47b30227574ebd2ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  hitBoxRightOffset: {x: 1.8, y: 0.85}
+  hitBoxSize: {x: 2.25, y: 0.8}

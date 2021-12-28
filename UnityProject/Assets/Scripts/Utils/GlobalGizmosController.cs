@@ -1,25 +1,33 @@
 using UnityEngine;
 
-public class GlobalGizmosControlelr : MonoBehaviour
+public class GlobalGizmosController : MonoBehaviour
 {
     [SerializeField] private bool disableAll;
     [SerializeField] private bool enableAll;
 
+    //------------Player Gizmos------------------
     public bool player;
     public static bool Player;
-    public bool test;
-    public static bool Test;
+    
+    // Melee Attack
+    public bool meleeAttackAlways;
+    public static bool MeleeAttackAlways;
+    public bool meleeAttackOnHit;
+    public static bool MeleeAttackOnHit;
+
 
     private void SyncValues()
     {
         Player = player;
-        Test = test;
+        MeleeAttackAlways = meleeAttackAlways;
+        MeleeAttackOnHit = meleeAttackOnHit;
     }
     
     private void SetAll(bool flag)
     {
         player = flag;
-        test = flag;
+        meleeAttackAlways = flag;
+        meleeAttackOnHit = flag;
     }
     
     private void OnValidate()

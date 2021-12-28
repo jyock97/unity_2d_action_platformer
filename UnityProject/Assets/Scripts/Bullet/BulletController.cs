@@ -35,7 +35,8 @@ public class BulletController : MonoBehaviour
         _moveDirection = direction;
     }
     
-    public void DestroyBullet()
+    // Used by an Animation
+    private void DestroyBullet()
     {
         Destroy(gameObject);
     }
@@ -45,5 +46,10 @@ public class BulletController : MonoBehaviour
         _rigidbody.velocity = Vector2.zero;
         _collider.enabled = false;
         _animator.SetTrigger("hit");
+
+        if (other.gameObject.CompareTag(TagsLayers.EnemyTag))
+        {
+            other.GetComponent<EnemyController>().DealDamage();
+        }
     }
 }

@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public bool isTouchingLeftWall;
     public bool isTouchingRightWall;
     public bool isCrouching;
+    public bool isMeleeAttacking;
     public Vector2 lookingDirection;
     public PlayerInventory playerInventory;
 
@@ -74,22 +75,25 @@ public class PlayerController : MonoBehaviour
     
     private void IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(_isGroundedBoundsCheck.center, _isGroundedBoundsCheck.size, 0, Vector2.down, 0, TagsLayers.GroundWallLayerMask);
+        RaycastHit2D hit = Physics2D.BoxCast(_isGroundedBoundsCheck.center, _isGroundedBoundsCheck.size, 0, Vector2.zero, 0, TagsLayers.GroundWallLayerMask);
         isGrounded = hit.collider != null;
     }
 
     private void isTouchingWalls()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size, 0, Vector2.down, 0, TagsLayers.GroundWallLayerMask);
+        RaycastHit2D hit = Physics2D.BoxCast(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size, 0, Vector2.zero, 0, TagsLayers.GroundWallLayerMask);
         isTouchingLeftWall = hit.collider != null;
         
-        hit = Physics2D.BoxCast(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size, 0, Vector2.down, 0, TagsLayers.GroundWallLayerMask);
+        hit = Physics2D.BoxCast(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size, 0, Vector2.zero, 0, TagsLayers.GroundWallLayerMask);
         isTouchingRightWall = hit.collider != null;
     }
 
     private void OnDrawGizmos()
     {
-        if (GlobalGizmosControlelr.Player)
+        Color c = Color.blue;
+        c.a = 0.5f;
+        Gizmos.color = c;
+        if (GlobalGizmosController.Player)
         {
             if (isGrounded)
             {

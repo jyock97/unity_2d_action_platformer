@@ -5,12 +5,15 @@ public class MeleeWeaponPickup : Interactable
     [SerializeField] private Sprite spriteToChange;
 
     private PlayerController _playerController;
+    private MeleeWeapon _meleeWeapon;
     private SpriteRenderer _spriteRenderer;
     private Collider2D _collider;
     
     private void Start()
     {
-        _playerController = GameObject.FindWithTag(TagsLayers.PlayerTag).GetComponent<PlayerController>();
+        GameObject player = GameObject.FindWithTag(TagsLayers.PlayerTag);
+        _playerController = player.GetComponent<PlayerController>();
+        _meleeWeapon = player.GetComponent<MeleeWeapon>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<CircleCollider2D>();
     }
@@ -18,7 +21,7 @@ public class MeleeWeaponPickup : Interactable
     public override void Interact()
     {
         _spriteRenderer.sprite = spriteToChange;
-        _playerController.playerInventory.AddWeapon(new MeleeWeapon());
         _collider.enabled = false;
+        _playerController.playerInventory.AddWeapon(_meleeWeapon);
     }
 }

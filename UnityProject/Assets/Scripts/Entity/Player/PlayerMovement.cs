@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private bool _isRunning;
+    private Vector2 _direction;
 
     private void Start()
     {
@@ -22,24 +24,35 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
-        Vector2 direction = new Vector2();
-        if (!_playerController.isTouchingRightWall && !_playerController.isCrouching && Input.GetKey(KeyCode.D))
+        void SetDirection(Vector2 direction)
         {
-            direction += Vector2.right;
-            _playerController.lookingDirection = Vector2.right;
-            _spriteRenderer.flipX = false;
+            // When MeleeAttacking, dont move if grounded, but move in the air
+            if (_playerController.isGrounded && !_playerController.isMeleeAttacking || !_playerController.isGrounded)
+            {
+                if (!_playerController.isCrouching)
+                {
+                    _direction += direction;
+                }
+                _playerController.lookingDirection = direction;
+                _spriteRenderer.flipX = direction == Vector2.left;
+            }
+        }
+        
+        _direction = Vector2.zero;
+        if (!_playerController.isTouchingRightWall && Input.GetKey(KeyCode.D))
+        {
+            SetDirection(Vector2.right);
         }
 
-        if (!_playerController.isTouchingLeftWall && !_playerController.isCrouching && Input.GetKey(KeyCode.A))
+        if (!_playerController.isTouchingLeftWall  && Input.GetKey(KeyCode.A))
         {
-            direction += Vector2.left;
-            _playerController.lookingDirection = Vector2.left;
-            _spriteRenderer.flipX = true;
+            SetDirection(Vector2.left);
+
         }
 
         _isRunning = Input.GetKey(KeyCode.LeftShift);
         
-        Move(direction);
+        Move(_direction);
     }
 
     private void Move(Vector2 direction)

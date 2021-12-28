@@ -1,28 +1,57 @@
+using System.Collections;
 using UnityEngine;
 
 public class RangeWeapon : Weapon
 {
-    private readonly PlayerController _playerController;
-    private readonly Animator _animator;
-    private readonly GameObject _bullet;
-    private readonly GameObject _leftBulletSpawn;
-    private readonly GameObject _rightBulletSpawn;
+    [SerializeField] private GameObject leftBulletSpawn;
+    [SerializeField] private GameObject rightBulletSpawn;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private float animShootingStateWaitTime;
+    
+    private PlayerInventory _playerInventory;
+    private bool _isShooting;
+    private float _animShootingStopTime;
 
-    public RangeWeapon(PlayerController playerController, GameObject bullet, GameObject leftBulletSpawn, GameObject rightBulletSpawn)
+    private void Update()
     {
-        Type = WeaponType.Range;
-        _playerController = playerController;
-        _bullet = bullet;
-        _leftBulletSpawn = leftBulletSpawn;
-        _rightBulletSpawn = rightBulletSpawn;
+        if (Time.time > _animShootingStopTime)
+        {
+            _isShooting = false;
+        }
+        
+        Animator.SetBool("isShooting", _isShooting);
     }
     
     public override void Attack()
     {
-        Vector2 spawnPosition = _playerController.lookingDirection == Vector2.left ?
-            _leftBulletSpawn.transform.position : _rightBulletSpawn.transform.position;
+        if (!_isShooting)
+        {
+            // If first shoot, wait for the animator to reposition the offset pivot
+            StartCoroutine(EndOfFrameRangeAttack());
+        }
+        else
+        {
+            Shoot();
+        }
 
-        GameObject go = GameObject.Instantiate(_bullet, spawnPosition, Quaternion.identity);
-        go.GetComponent<BulletController>().SetDirection(_playerController.lookingDirection);
+        _animShootingStopTime = Time.time + animShootingStateWaitTime;
+
+        _isShooting = true;
+        Animator.SetBool("isShooting", _isShooting);
+    }
+
+    private void Shoot()
+    {
+        Vector2 spawnPosition = PlayerController.lookingDirection == Vector2.left ?
+        leftBulletSpawn.transform.position : rightBulletSpawn.transform.position;
+
+        GameObject go = Instantiate(bullet, spawnPosition, Quaternion.identity);
+        go.GetComponent<BulletController>().SetDirection(PlayerController.lookingDirection);
+    }
+
+    private IEnumerator EndOfFrameRangeAttack()
+    {
+        yield return new WaitForEndOfFrame();
+        Shoot();
     }
 }

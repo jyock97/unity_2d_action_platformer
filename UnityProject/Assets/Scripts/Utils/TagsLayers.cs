@@ -10,4 +10,5 @@ public static class TagsLayers
     public static readonly string InteractableTag = "Interactable";
 
     public static readonly LayerMask GroundWallLayerMask = LayerMask.GetMask("GroundWall");
+    public static readonly LayerMask EnemyLayerMask = LayerMask.GetMask("Enemy");
 }
