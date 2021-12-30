@@ -315,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e48c6c927e96b489540891645b4818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   leftBulletSpawn: {fileID: 573882807}
   rightBulletSpawn: {fileID: 1090695307}
   bullet: {fileID: 1443302646151123967, guid: c6d25eb669d14ec47853526b5e2feee3, type: 3}
@@ -332,6 +331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3083fecc7650f47b30227574ebd2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  nextAttackDelay: 0.3
   hitBoxRightOffset: {x: 1.8, y: 0.85}
   hitBoxSize: {x: 2.25, y: 0.8}

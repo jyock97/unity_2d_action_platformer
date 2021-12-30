@@ -75,7 +75,7 @@ public class MeleeWeapon : Weapon
 #endif
     private void OnDrawGizmos()
     {
-        Color c = Color.red;
+        Color c = Color.blue;
         c.a = 0.5f;
         Gizmos.color = c;
         

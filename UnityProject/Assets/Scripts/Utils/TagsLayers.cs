@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class TagsLayers
@@ -10,5 +8,9 @@ public static class TagsLayers
     public static readonly string InteractableTag = "Interactable";
 
     public static readonly LayerMask GroundWallLayerMask = LayerMask.GetMask("GroundWall");
+    public static readonly LayerMask PlayerLayerMask = LayerMask.GetMask("Player");
     public static readonly LayerMask EnemyLayerMask = LayerMask.GetMask("Enemy");
+    public static readonly LayerMask InteractableLayerMask = LayerMask.GetMask("Interactable");
+
+    public static readonly int EnemyLayerMaskIndex = LayerMask.NameToLayer("Enemy");
 }

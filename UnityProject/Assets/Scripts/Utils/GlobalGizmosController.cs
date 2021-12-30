@@ -15,12 +15,23 @@ public class GlobalGizmosController : MonoBehaviour
     public bool meleeAttackOnHit;
     public static bool MeleeAttackOnHit;
 
+    //-------------Enemy Gizmos------------------
+    public bool enemies;
+    public static bool Enemies;
+    public bool enemyAttackAlways;
+    public static bool EnemyAttackAlways;
+    public bool enemyAttackOnHit;
+    public static bool EnemyAttackOnHit;
+
 
     private void SyncValues()
     {
         Player = player;
         MeleeAttackAlways = meleeAttackAlways;
         MeleeAttackOnHit = meleeAttackOnHit;
+        Enemies = enemies;
+        EnemyAttackAlways = enemyAttackAlways;
+        EnemyAttackOnHit = enemyAttackOnHit;
     }
     
     private void SetAll(bool flag)
@@ -28,6 +39,9 @@ public class GlobalGizmosController : MonoBehaviour
         player = flag;
         meleeAttackAlways = flag;
         meleeAttackOnHit = flag;
+        enemies = flag;
+        enemyAttackAlways = flag;
+        enemyAttackOnHit = flag;
     }
     
     private void OnValidate()
