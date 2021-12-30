@@ -26,6 +26,8 @@ public class EntityController : MonoBehaviour
     protected virtual void Start()
     {
         _collider = GetComponent<BoxCollider2D>();
+        
+        life = maxLife;
     }
 
     protected virtual void Update()

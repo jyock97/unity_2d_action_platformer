@@ -235,11 +235,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  isTouchingLeftWall: 0
-  isTouchingRightWall: 0
+  isTouchingLeftObject: 0
+  isTouchingRightObject: 0
+  lookingDirection: {x: 0, y: 0}
+  maxLife: 8
+  life: 0
   isCrouching: 0
   isMeleeAttacking: 0
-  lookingDirection: {x: 0, y: 0}
 --- !u!114 &3366126324474927380
 MonoBehaviour:
   m_ObjectHideFlags: 0

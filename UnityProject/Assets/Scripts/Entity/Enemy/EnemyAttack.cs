@@ -38,7 +38,7 @@ public class EnemyAttack : EnemyState
 
         if (hit.collider != null)
         {
-//            hit.collider.gameObject.GetComponent<EntityController>().DealDamage();
+            hit.collider.gameObject.GetComponent<EntityController>().DealDamage();
         }
 
 #if UNITY_EDITOR

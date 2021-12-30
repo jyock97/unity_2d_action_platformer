@@ -44,7 +44,6 @@ public class EnemyController : EntityController
         
         Physics2D.IgnoreLayerCollision(TagsLayers.EnemyLayerMaskIndex, TagsLayers.EnemyLayerMaskIndex);
 
-        life = maxLife;
         LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask | TagsLayers.PlayerLayerMask;
 
         InitEnemyStates();

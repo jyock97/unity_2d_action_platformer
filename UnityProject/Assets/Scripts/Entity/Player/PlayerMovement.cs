@@ -39,12 +39,12 @@ public class PlayerMovement : MonoBehaviour
         }
         
         _direction = Vector2.zero;
-        if (!_playerController.isTouchingRightWall && Input.GetKey(KeyCode.D))
+        if (!_playerController.isTouchingRightObject && Input.GetKey(KeyCode.D))
         {
             SetDirection(Vector2.right);
         }
 
-        if (!_playerController.isTouchingLeftWall  && Input.GetKey(KeyCode.A))
+        if (!_playerController.isTouchingLeftObject  && Input.GetKey(KeyCode.A))
         {
             SetDirection(Vector2.left);
 
