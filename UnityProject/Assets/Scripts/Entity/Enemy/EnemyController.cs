@@ -15,11 +15,7 @@ public class EnemyController : EntityController
     [SerializeField] private EnemyIdleWait.EnemyIdleWaitData enemyIdleWaitData;
     [Header("EnemyAttackData")]
     [SerializeField] private EnemyAttack.EnemyAttackData enemyAttackData;
-    
-    [HideInInspector] public Rigidbody2D entityRigidbody;
-    [HideInInspector] public BoxCollider2D entityCollider;
-    [HideInInspector] public SpriteRenderer spriteRenderer;
-    [HideInInspector] public Animator animator;
+
 
     private Dictionary<EnemyState.EnemyStates, EnemyState> _states;
     private EnemyState _currentState;
@@ -37,14 +33,9 @@ public class EnemyController : EntityController
     {
         base.Start();
         
-        entityRigidbody = GetComponent<Rigidbody2D>();
-        entityCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        
         Physics2D.IgnoreLayerCollision(TagsLayers.EnemyLayerMaskIndex, TagsLayers.EnemyLayerMaskIndex);
 
-        LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask | TagsLayers.PlayerLayerMask;
+        _LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask | TagsLayers.PlayerLayerMask;
 
         InitEnemyStates();
     }
@@ -62,8 +53,8 @@ public class EnemyController : EntityController
     {
         Vector2 newVelocity = direction;
         newVelocity *= speed;
-        newVelocity.y = entityRigidbody.velocity.y;
-        entityRigidbody.velocity = newVelocity;
+        newVelocity.y = _Rigidbody.velocity.y;
+        _Rigidbody.velocity = newVelocity;
     }
 
     // Used by animation
@@ -88,9 +79,9 @@ public class EnemyController : EntityController
     {
         _states = new Dictionary<EnemyState.EnemyStates, EnemyState>
         {
-            {EnemyState.EnemyStates.EnemyIdleMovement, new EnemyIdleMovement(this, ref enemyIdleMovementData)},
-            {EnemyState.EnemyStates.EnemyRunToTarget, new EnemyRunToTarget(this, ref enemyRunToTargetData)},
-            {EnemyState.EnemyStates.EnemyAttack, new EnemyAttack(this, enemyAttackData)},
+            {EnemyState.EnemyStates.EnemyIdleMovement, new EnemyIdleMovement(this, _Animator, _SpriteRenderer, enemyIdleMovementData)},
+            {EnemyState.EnemyStates.EnemyRunToTarget, new EnemyRunToTarget(this, _Rigidbody, _Animator, _SpriteRenderer, enemyRunToTargetData)},
+            {EnemyState.EnemyStates.EnemyAttack, new EnemyAttack(this, _Animator, enemyAttackData)},
             {EnemyState.EnemyStates.EnemyIdleWait, new EnemyIdleWait(this, enemyIdleWaitData)},
         };
         _currentState = _states[EnemyState.EnemyStates.EnemyIdleMovement];
@@ -136,6 +127,7 @@ public class EnemyController : EntityController
         }
     }
 
+#if UNITY_EDITOR
     protected override void OnDrawGizmos()
     {
         if (GlobalGizmosController.Enemies)
@@ -156,4 +148,5 @@ public class EnemyController : EntityController
             _currentState.DrawGizmos();
         }
     }
+#endif
 }

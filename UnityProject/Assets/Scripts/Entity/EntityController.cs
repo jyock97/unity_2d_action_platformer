@@ -16,26 +16,29 @@ public class EntityController : MonoBehaviour
     [HideInInspector] public bool isHurt;
     [HideInInspector] public bool isDead;
 
-    protected LayerMask LeftRightObjectLayerMask;
+    protected LayerMask _LeftRightObjectLayerMask;
 
-    private Rigidbody2D _rigidbody;
-    private Collider2D _collider;
-    private Animator _animator;
+    protected Rigidbody2D _Rigidbody;
+    protected Collider2D _Collider;
+    protected SpriteRenderer _SpriteRenderer;
+    protected Animator _Animator;
+    
     private Bounds _isGroundedBoundsCheck;
     private Bounds _isTouchingLeftWallCheck;
     private Bounds _isTouchingRightWallCheck;
 
     protected virtual void OnValidate()
     {
-        _collider = GetComponent<BoxCollider2D>();
+        _Collider = GetComponent<BoxCollider2D>();
         CalculateBounds();
     }
 
     protected virtual void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _collider = GetComponent<BoxCollider2D>();
-        _animator = GetComponent<Animator>();
+        _Rigidbody = GetComponent<Rigidbody2D>();
+        _Collider = GetComponent<BoxCollider2D>();
+        _SpriteRenderer = GetComponent<SpriteRenderer>();
+        _Animator = GetComponent<Animator>();
         
         life = maxLife;
     }
@@ -44,10 +47,10 @@ public class EntityController : MonoBehaviour
     {
         CalculateBounds();
         IsGrounded();
-        isTouchingLeftRightObjects();
+        IsTouchingLeftRightObjects();
     }
     
-    public virtual void DealDamage(Vector2 damageOrigin)
+    public void DealDamage(Vector2 damageOrigin)
     {
         if (!isHurt && life > 1)
         {
@@ -59,26 +62,26 @@ public class EntityController : MonoBehaviour
         }
     }
 
-    protected virtual void Hurt(Vector2 damageOrigin)
+    protected void Hurt(Vector2 damageOrigin)
     {
         life--;
-        _rigidbody.velocity = Vector2.zero;
-        _rigidbody.AddForce(CalculateKnockback(damageOrigin));
+        _Rigidbody.velocity = Vector2.zero;
+        _Rigidbody.AddForce(CalculateKnockback(damageOrigin));
         StartCoroutine(SetIsHurt());
-        _animator.SetTrigger("hurt");
+        _Animator.SetTrigger("hurt");
     }
 
     protected virtual void Die()
     {
         isDead = true;
-        _rigidbody.simulated = false;
-        _animator.SetTrigger("die");
+        _Rigidbody.simulated = false;
+        _Animator.SetTrigger("die");
     }
     
     private Vector2 CalculateKnockback(Vector2 damageOrigin)
     {
         Vector2 direction = Vector2.one;
-        direction.x = (damageOrigin - (Vector2) transform.position).normalized.x < 0.001 ? 1 : -1;
+        direction.x = (damageOrigin - (Vector2) transform.position).normalized.x < 0.01 ? 1 : -1;
         return direction * knockbackForce;
     }
 
@@ -92,7 +95,7 @@ public class EntityController : MonoBehaviour
     private void CalculateBounds()
     {
         // Ground bounds
-        Bounds bounds = _collider.bounds;
+        Bounds bounds = _Collider.bounds;
         Vector2 origin = bounds.min;
         origin.x = bounds.center.x;
         origin.y -= 0.15f;
@@ -101,7 +104,7 @@ public class EntityController : MonoBehaviour
         _isGroundedBoundsCheck.center = origin;
         _isGroundedBoundsCheck.size = size;
         
-        // Left Wall bounds
+        // Left Object bounds
         origin = bounds.center;
         origin.x -= bounds.extents.x + 0.1f;
         size = bounds.size;
@@ -109,7 +112,7 @@ public class EntityController : MonoBehaviour
         _isTouchingLeftWallCheck.center = origin;
         _isTouchingLeftWallCheck.size = size;
         
-        // Right Wall bounds
+        // Right Object bounds
         origin = bounds.center;
         origin.x += bounds.extents.x + 0.1f;
         size = bounds.size;
@@ -124,12 +127,12 @@ public class EntityController : MonoBehaviour
         isGrounded = hit.collider != null;
     }
 
-    private void isTouchingLeftRightObjects()
+    private void IsTouchingLeftRightObjects()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size, 0, Vector2.zero, 0, LeftRightObjectLayerMask);
+        RaycastHit2D hit = Physics2D.BoxCast(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size, 0, Vector2.zero, 0, _LeftRightObjectLayerMask);
         isTouchingLeftObject = hit.collider != null;
         
-        hit = Physics2D.BoxCast(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size, 0, Vector2.zero, 0, LeftRightObjectLayerMask);
+        hit = Physics2D.BoxCast(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size, 0, Vector2.zero, 0, _LeftRightObjectLayerMask);
         isTouchingRightObject = hit.collider != null;
     }
 

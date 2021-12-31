@@ -8,8 +8,6 @@ public class PlayerController : EntityController
     public bool isMeleeAttacking;
     public PlayerInventory playerInventory;
 
-    private Animator _animator;
-
     private void Awake()
     {
         playerInventory = new PlayerInventory();
@@ -18,18 +16,16 @@ public class PlayerController : EntityController
     protected override void Start()
     {
         base.Start();
-        
-        _animator = GetComponent<Animator>();
-        
+
         lookingDirection = Vector2.right;
-        LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask;
+        _LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask;
     }
 
     protected override void Update()
     {
         base.Update();
         
-        _animator.SetBool("isGrounded", isGrounded);
+        _Animator.SetBool("isGrounded", isGrounded);
     }
 
     protected override void Die()
@@ -41,7 +37,7 @@ public class PlayerController : EntityController
     private IEnumerator GameOver()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("Scenes/TestTilemap");
+        SceneManager.LoadScene("GameOver");
     }
 
     private void OnCollisionEnter2D(Collision2D other)

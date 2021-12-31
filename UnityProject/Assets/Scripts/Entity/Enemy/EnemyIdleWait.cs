@@ -21,7 +21,7 @@ public class EnemyIdleWait : EnemyState
     {
         if (Time.time > _waitTime)
         {
-            EnemyController.ChangeEnemyState(EnemyStates.EnemyIdleMovement);
+            _EnemyController.ChangeEnemyState(EnemyStates.EnemyIdleMovement);
         }
     }
 
@@ -30,5 +30,7 @@ public class EnemyIdleWait : EnemyState
         _waitTime = currentTime + _data.waitTime;
     }
 
+#if UNITY_EDITOR
     public override void DrawGizmos() { }
+#endif
 }

@@ -8,14 +8,16 @@ public abstract class EnemyState
         EnemyIdleWait
     }
     
-    protected readonly EnemyController EnemyController;
+    protected readonly EnemyController _EnemyController;
 
     protected EnemyState(EnemyController enemyController)
     {
-        EnemyController = enemyController;
+        _EnemyController = enemyController;
     }
     
     public abstract void Execute();
     
+#if UNITY_EDITOR
     public abstract void DrawGizmos();
+#endif
 }

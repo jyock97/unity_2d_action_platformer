@@ -10,12 +10,14 @@ public class EnemyAttack : EnemyState
         public Vector2 attackHitBoxSize;
     }
 
-    private EnemyAttackData _data;
+    private readonly Animator _animator;
+    private readonly EnemyAttackData _data;
     private Bounds _hitBox;
     private bool _isAttacking;
 
-    public EnemyAttack(EnemyController enemyController, EnemyAttackData data) : base(enemyController)
+    public EnemyAttack(EnemyController enemyController, Animator animator, EnemyAttackData data) : base(enemyController)
     {
+        _animator = animator;
         _data = data;
         CalculateBounds();
     }
@@ -27,7 +29,7 @@ public class EnemyAttack : EnemyState
         if (!_isAttacking)
         {
             _isAttacking = true;
-            EnemyController.animator.SetTrigger("attack");
+            _animator.SetTrigger("attack");
         }
     }
     
@@ -38,7 +40,7 @@ public class EnemyAttack : EnemyState
 
         if (hit.collider != null)
         {
-            hit.collider.gameObject.GetComponent<EntityController>().DealDamage(EnemyController.transform.position);
+            hit.collider.gameObject.GetComponent<EntityController>().DealDamage(_EnemyController.transform.position);
         }
 
 #if UNITY_EDITOR
@@ -49,14 +51,14 @@ public class EnemyAttack : EnemyState
     public void AttackEnd()
     {
         _isAttacking = false;
-        EnemyController.ChangeEnemyState(EnemyStates.EnemyIdleWait);
+        _EnemyController.ChangeEnemyState(EnemyStates.EnemyIdleWait);
     }
 
     private void CalculateBounds()
     {
         Vector2 newOffset = _data.attackHitBoxOffset;
-        newOffset.x *= EnemyController.lookingDirection == Vector2.left ? -1 : 1;
-        Vector2 newPosition = EnemyController.transform.position;
+        newOffset.x *= _EnemyController.lookingDirection == Vector2.left ? -1 : 1;
+        Vector2 newPosition = _EnemyController.transform.position;
         newPosition += newOffset;
         _hitBox.center = newPosition;
         _hitBox.size = _data.attackHitBoxSize;
@@ -64,7 +66,6 @@ public class EnemyAttack : EnemyState
 
 #if UNITY_EDITOR
     private float _onHitTime;
-#endif
     public override void DrawGizmos()
     {
         CalculateBounds();
@@ -82,4 +83,5 @@ public class EnemyAttack : EnemyState
             }
         }
     }
+#endif
 }

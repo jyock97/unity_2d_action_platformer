@@ -10,11 +10,15 @@ public class EnemyIdleMovement : EnemyState
         public bool startLeft;
     }
 
-    private EnemyIdleMovementData _data;
+    private readonly Animator _animator;
+    private readonly SpriteRenderer _spriteRenderer;
+    private readonly EnemyIdleMovementData _data;
     private Vector2 _movementDirection;
 
-    public EnemyIdleMovement(EnemyController enemyController, ref EnemyIdleMovementData data) : base(enemyController)
+    public EnemyIdleMovement(EnemyController enemyController, Animator animator, SpriteRenderer spriteRenderer, EnemyIdleMovementData data) : base(enemyController)
     {
+        _animator = animator;
+        _spriteRenderer = spriteRenderer;
         _data = data;
         _movementDirection = _data.startLeft ? Vector2.left : Vector2.right;
     }
@@ -22,29 +26,31 @@ public class EnemyIdleMovement : EnemyState
     public override void Execute()
     {
         // Exit State
-        if (EnemyController.isPlayerOnSight)
+        if (_EnemyController.isPlayerOnSight)
         {
-            EnemyController.animator.SetBool("isMoving", false);
-            EnemyController.ChangeEnemyState(EnemyStates.EnemyRunToTarget);
+            _animator.SetBool("isMoving", false);
+            _EnemyController.ChangeEnemyState(EnemyStates.EnemyRunToTarget);
             return;
         }
         
-        EnemyController.animator.SetBool("isMoving", true);
-        EnemyController.spriteRenderer.flipX = _movementDirection == Vector2.left;
-        EnemyController.lookingDirection = _movementDirection;
-        if (EnemyController.isTouchingLeftObject)
+        _animator.SetBool("isMoving", true);
+        _spriteRenderer.flipX = _movementDirection == Vector2.left;
+        _EnemyController.lookingDirection = _movementDirection;
+        if (_EnemyController.isTouchingLeftObject)
         {
             _movementDirection = Vector2.right;
-            EnemyController.spriteRenderer.flipX = false;
+            _spriteRenderer.flipX = false;
         }
-        if (EnemyController.isTouchingRightObject)
+        if (_EnemyController.isTouchingRightObject)
         {
             _movementDirection = Vector2.left;
-            EnemyController.spriteRenderer.flipX = true;
+            _spriteRenderer.flipX = true;
         }
         
-        EnemyController.Move(_movementDirection, _data.movementSpeed);
+        _EnemyController.Move(_movementDirection, _data.movementSpeed);
     }
 
+#if UNITY_EDITOR
     public override void DrawGizmos() { }
+#endif
 }

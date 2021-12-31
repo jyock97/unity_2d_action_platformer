@@ -32,8 +32,8 @@ public class MeleeWeapon : Weapon
     {
         if (Time.time > _lastAttackTime)
         {
-            PlayerController.isMeleeAttacking = true;
-            Animator.SetTrigger("meleeAttack");
+            _PlayerController.isMeleeAttacking = true;
+            _Animator.SetTrigger("meleeAttack");
             _lastAttackTime = Time.time + nextAttackDelay;
         }
     }
@@ -41,7 +41,7 @@ public class MeleeWeapon : Weapon
     private void CalculateHitBox()
     {
         Vector2 newOffset = hitBoxRightOffset;
-        newOffset.x *= PlayerController.lookingDirection == Vector2.left ? -1 : 1;
+        newOffset.x *= _PlayerController.lookingDirection == Vector2.left ? -1 : 1;
         Vector2 newPosition = transform.position;
         newPosition += newOffset;
         _hitBox.center = newPosition;
@@ -66,13 +66,12 @@ public class MeleeWeapon : Weapon
     // Used by an Animation
     private void MeleeAttackEnd()
     {
-        PlayerController.isMeleeAttacking = false;
+        _PlayerController.isMeleeAttacking = false;
     }
 
 
 #if UNITY_EDITOR
     private float _onHitTime;
-#endif
     private void OnDrawGizmos()
     {
         Color c = Color.blue;
@@ -92,4 +91,5 @@ public class MeleeWeapon : Weapon
             }
         }
     }
+#endif
 }
