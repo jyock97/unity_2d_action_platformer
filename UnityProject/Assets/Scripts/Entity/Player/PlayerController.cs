@@ -40,7 +40,7 @@ public class PlayerController : EntityController
         SceneManager.LoadScene("GameOver");
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag(TagsLayers.EnemyTag))
         {
@@ -53,6 +53,9 @@ public class PlayerController : EntityController
         Color c = Color.blue;
         c.a = 0.5f;
         Gizmos.color = c;
-        base.OnDrawGizmos();
+        if (GlobalGizmosController.Player)
+        {
+            base.OnDrawGizmos();
+        }
     }
 }

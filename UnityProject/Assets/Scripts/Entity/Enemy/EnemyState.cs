@@ -16,7 +16,7 @@ public abstract class EnemyState
     }
     
     public abstract void Execute();
-    
+
 #if UNITY_EDITOR
     public abstract void DrawGizmos();
 #endif

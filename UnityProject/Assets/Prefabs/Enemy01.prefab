@@ -188,7 +188,3 @@ MonoBehaviour:
   enemyAttackData:
     attackHitBoxOffset: {x: 0.8, y: 0.4}
     attackHitBoxSize: {x: 0.8, y: 0.6}
-  entityRigidbody: {fileID: 7587974526889937993}
-  entityCollider: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  animator: {fileID: 0}

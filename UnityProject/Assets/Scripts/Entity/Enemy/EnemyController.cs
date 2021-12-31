@@ -44,6 +44,7 @@ public class EnemyController : EntityController
     {
         base.Update();
 
+        CalculateBounds();
         PlayerOnSight();
         
         _currentState.Execute();
