@@ -6,6 +6,7 @@ public static class TagsLayers
     public static readonly string PlayerTag = "Player";
     public static readonly string EnemyTag = "Enemy";
     public static readonly string InteractableTag = "Interactable";
+    public static readonly string BulletTag = "Bullet";
 
     public static readonly LayerMask GroundWallLayerMask = LayerMask.GetMask("GroundWall");
     public static readonly LayerMask PlayerLayerMask = LayerMask.GetMask("Player");

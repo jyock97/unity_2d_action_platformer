@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EntityController : MonoBehaviour
@@ -9,10 +10,17 @@ public class EntityController : MonoBehaviour
 
     [SerializeField] protected int maxLife;
     [SerializeField] protected int life;
+    [SerializeField] protected float invulnerableTime;
+    [SerializeField] protected float knockbackForce;
+
+    [HideInInspector] public bool isHurt;
+    [HideInInspector] public bool isDead;
 
     protected LayerMask LeftRightObjectLayerMask;
-    
+
+    private Rigidbody2D _rigidbody;
     private Collider2D _collider;
+    private Animator _animator;
     private Bounds _isGroundedBoundsCheck;
     private Bounds _isTouchingLeftWallCheck;
     private Bounds _isTouchingRightWallCheck;
@@ -25,7 +33,9 @@ public class EntityController : MonoBehaviour
 
     protected virtual void Start()
     {
+        _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<BoxCollider2D>();
+        _animator = GetComponent<Animator>();
         
         life = maxLife;
     }
@@ -37,14 +47,46 @@ public class EntityController : MonoBehaviour
         isTouchingLeftRightObjects();
     }
     
-    public virtual void DealDamage()
+    public virtual void DealDamage(Vector2 damageOrigin)
+    {
+        if (!isHurt && life > 1)
+        {
+            Hurt(damageOrigin);
+        }
+        else if (!isDead && life <= 1)
+        {
+            Die();
+        }
+    }
+
+    protected virtual void Hurt(Vector2 damageOrigin)
     {
         life--;
-        
-        if (life < 1)
-        {
-            Destroy(gameObject);
-        }
+        _rigidbody.velocity = Vector2.zero;
+        _rigidbody.AddForce(CalculateKnockback(damageOrigin));
+        StartCoroutine(SetIsHurt());
+        _animator.SetTrigger("hurt");
+    }
+
+    protected virtual void Die()
+    {
+        isDead = true;
+        _rigidbody.simulated = false;
+        _animator.SetTrigger("die");
+    }
+    
+    private Vector2 CalculateKnockback(Vector2 damageOrigin)
+    {
+        Vector2 direction = Vector2.one;
+        direction.x = (damageOrigin - (Vector2) transform.position).normalized.x < 0.001 ? 1 : -1;
+        return direction * knockbackForce;
+    }
+
+    private IEnumerator SetIsHurt()
+    {
+        isHurt = true;
+        yield return new WaitForSeconds(invulnerableTime);
+        isHurt = false;
     }
 
     private void CalculateBounds()
@@ -84,14 +126,11 @@ public class EntityController : MonoBehaviour
 
     private void isTouchingLeftRightObjects()
     {
-        if (LeftRightObjectLayerMask != null)
-        {
-            RaycastHit2D hit = Physics2D.BoxCast(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size, 0, Vector2.zero, 0, LeftRightObjectLayerMask);
-            isTouchingLeftObject = hit.collider != null;
-            
-            hit = Physics2D.BoxCast(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size, 0, Vector2.zero, 0, LeftRightObjectLayerMask);
-            isTouchingRightObject = hit.collider != null;
-        }
+        RaycastHit2D hit = Physics2D.BoxCast(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size, 0, Vector2.zero, 0, LeftRightObjectLayerMask);
+        isTouchingLeftObject = hit.collider != null;
+        
+        hit = Physics2D.BoxCast(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size, 0, Vector2.zero, 0, LeftRightObjectLayerMask);
+        isTouchingRightObject = hit.collider != null;
     }
 
     protected virtual void OnDrawGizmos()

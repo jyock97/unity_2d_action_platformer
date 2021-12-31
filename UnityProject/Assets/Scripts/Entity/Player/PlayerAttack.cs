@@ -16,6 +16,11 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        if (_playerController.isDead)
+        {
+            return;
+        }
+        
         if (Input.GetMouseButtonDown(0))
         {
             _playerInventory.CurrentWeapon.Attack();

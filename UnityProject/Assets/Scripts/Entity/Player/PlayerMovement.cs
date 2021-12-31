@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,21 +39,29 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         
+        if (_playerController.isDead)
+        {
+            return;
+        }
+        
         _direction = Vector2.zero;
-        if (!_playerController.isTouchingRightObject && Input.GetKey(KeyCode.D))
+        if (!_playerController.isHurt && !_playerController.isTouchingRightObject && Input.GetKey(KeyCode.D))
         {
             SetDirection(Vector2.right);
         }
 
-        if (!_playerController.isTouchingLeftObject  && Input.GetKey(KeyCode.A))
+        if (!_playerController.isHurt && !_playerController.isTouchingLeftObject  && Input.GetKey(KeyCode.A))
         {
             SetDirection(Vector2.left);
 
         }
 
         _isRunning = Input.GetKey(KeyCode.LeftShift);
-        
-        Move(_direction);
+
+        if (!_playerController.isHurt && !_playerController.isDead)
+        {
+            Move(_direction);
+        }
     }
 
     private void Move(Vector2 direction)

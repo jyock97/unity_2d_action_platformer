@@ -66,14 +66,22 @@ public class EnemyController : EntityController
         entityRigidbody.velocity = newVelocity;
     }
 
+    // Used by animation
     private void Attack()
     {
         ((EnemyAttack) _currentState).Attack();
     }
 
+    // Used by animation
     private void AttackEnd()
     {
         ((EnemyAttack) _currentState).AttackEnd();
+    }
+
+    // Used by animation
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 
     private void InitEnemyStates()

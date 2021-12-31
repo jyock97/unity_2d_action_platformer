@@ -2,10 +2,21 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
+    private PlayerController _playerController;
     private Interactable _interactable;
 
+    private void Start()
+    {
+        _playerController = GetComponent<PlayerController>();
+    }
+    
     private void Update()
     {
+        if (_playerController.isDead)
+        {
+            return;
+        }
+        
         if (_interactable != null && Input.GetKeyDown(KeyCode.E))
         {
             _interactable.Interact();

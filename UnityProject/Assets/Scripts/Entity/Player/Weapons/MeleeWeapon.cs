@@ -55,7 +55,7 @@ public class MeleeWeapon : Weapon
 
         foreach (RaycastHit2D raycastHit2D in hits)
         {
-            raycastHit2D.collider.gameObject.GetComponent<EnemyController>().DealDamage();
+            raycastHit2D.collider.gameObject.GetComponent<EnemyController>().DealDamage(transform.position);
         }
 
 #if UNITY_EDITOR

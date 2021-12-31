@@ -169,8 +169,12 @@ MonoBehaviour:
   isTouchingLeftObject: 0
   isTouchingRightObject: 0
   lookingDirection: {x: 0, y: 0}
-  maxLife: 10
+  maxLife: 2
   life: 0
+  invulnerableTime: 0
+  knockbackForce: 0
+  isHurt: 0
+  isDead: 0
   isPlayerOnSight: 0
   sightBoxOffset: {x: 0, y: 0.4}
   sightBoxSize: {x: 10, y: 0.8}

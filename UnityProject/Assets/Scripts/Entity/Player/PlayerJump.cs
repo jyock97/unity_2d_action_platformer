@@ -17,8 +17,12 @@ public class PlayerJump : MonoBehaviour
     
     private void Update()
     {
+        if (_playerController.isDead)
+        {
+            return;
+        }
         
-        if (_playerController.isGrounded && !_playerController.isCrouching && Input.GetKeyDown(KeyCode.Space))
+        if (!_playerController.isHurt && _playerController.isGrounded && !_playerController.isCrouching && Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
@@ -32,7 +36,6 @@ public class PlayerJump : MonoBehaviour
         {
             _rigidbody.gravityScale = 2;
         }
-        
     }
 
     private void Jump()

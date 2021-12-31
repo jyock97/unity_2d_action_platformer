@@ -13,6 +13,11 @@ public class PlayerCrouch : MonoBehaviour
 
     private void Update()
     {
+        if (_playerController.isDead)
+        {
+            return;
+        }
+        
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             _playerController.isCrouching = true;

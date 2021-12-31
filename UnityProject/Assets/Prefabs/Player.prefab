@@ -240,6 +240,10 @@ MonoBehaviour:
   lookingDirection: {x: 0, y: 0}
   maxLife: 8
   life: 0
+  invulnerableTime: 0.4
+  knockbackForce: 260
+  isHurt: 0
+  isDead: 0
   isCrouching: 0
   isMeleeAttacking: 0
 --- !u!114 &3366126324474927380

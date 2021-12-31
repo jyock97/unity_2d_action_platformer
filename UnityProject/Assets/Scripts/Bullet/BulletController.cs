@@ -43,13 +43,16 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _rigidbody.velocity = Vector2.zero;
-        _collider.enabled = false;
-        _animator.SetTrigger("hit");
+        if (!other.CompareTag(TagsLayers.InteractableTag) && !other.CompareTag(TagsLayers.BulletTag))
+        {
+            _rigidbody.velocity = Vector2.zero;
+            _collider.enabled = false;
+            _animator.SetTrigger("hit");
+        }
 
         if (other.gameObject.CompareTag(TagsLayers.EnemyTag))
         {
-            other.GetComponent<EnemyController>().DealDamage();
+            other.GetComponent<EnemyController>().DealDamage(transform.position);
         }
     }
 }
