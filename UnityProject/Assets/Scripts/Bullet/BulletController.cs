@@ -52,7 +52,7 @@ public class BulletController : MonoBehaviour
 
         if (other.gameObject.CompareTag(TagsLayers.EnemyTag))
         {
-            other.GetComponent<EnemyController>().DealDamage(transform.position);
+            other.GetComponent<EnemyController>().DealDamage(transform.position, Weapon.WeaponType.Range);
         }
     }
 }

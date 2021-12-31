@@ -5,6 +5,7 @@ public class EnemyController : EntityController
 {
     public bool isPlayerOnSight;
     
+    [SerializeField] private Weapon.WeaponType weaknessWeapon;
     [SerializeField] private Vector2 sightBoxOffset;
     [SerializeField] private Vector2 sightBoxSize;
     [Header("EnemyIdleMovementData")]
@@ -56,6 +57,20 @@ public class EnemyController : EntityController
         newVelocity *= speed;
         newVelocity.y = _Rigidbody.velocity.y;
         _Rigidbody.velocity = newVelocity;
+    }
+
+    public void DealDamage(Vector2 origin, Weapon.WeaponType weaponType)
+    {
+        if (weaponType == weaknessWeapon)
+        {
+            DealDamage(origin);
+        }
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        _Rigidbody.simulated = false;
     }
 
     // Used by animation

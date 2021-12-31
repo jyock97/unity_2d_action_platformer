@@ -49,6 +49,16 @@ public class EntityController : MonoBehaviour
         IsGrounded();
         IsTouchingLeftRightObjects();
     }
+
+    public int GetMaxLife()
+    {
+        return maxLife;
+    }
+
+    public int GetLife()
+    {
+        return life;
+    }
     
     public void DealDamage(Vector2 damageOrigin)
     {
@@ -73,8 +83,8 @@ public class EntityController : MonoBehaviour
 
     protected virtual void Die()
     {
+        life--;
         isDead = true;
-        _Rigidbody.simulated = false;
         _Animator.SetTrigger("die");
     }
     

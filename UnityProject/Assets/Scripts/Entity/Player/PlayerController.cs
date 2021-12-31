@@ -11,6 +11,7 @@ public class PlayerController : EntityController
     private void Awake()
     {
         playerInventory = new PlayerInventory();
+        Physics2D.IgnoreLayerCollision(TagsLayers.PlayerLayerMaskIndex, TagsLayers.EnemyLayerMaskIndex , false);
     }
 
     protected override void Start()
@@ -31,6 +32,7 @@ public class PlayerController : EntityController
     protected override void Die()
     {
         base.Die();
+        Physics2D.IgnoreLayerCollision(TagsLayers.PlayerLayerMaskIndex, TagsLayers.EnemyLayerMaskIndex);
         StartCoroutine(GameOver());
     }
 

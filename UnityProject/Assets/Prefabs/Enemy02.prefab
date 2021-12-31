@@ -176,6 +176,7 @@ MonoBehaviour:
   isHurt: 0
   isDead: 0
   isPlayerOnSight: 0
+  weaknessWeapon: 1
   sightBoxOffset: {x: 0, y: 0.4}
   sightBoxSize: {x: 10, y: 0.8}
   enemyIdleMovementData:
