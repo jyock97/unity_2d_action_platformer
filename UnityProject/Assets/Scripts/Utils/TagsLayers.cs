@@ -14,5 +14,5 @@ public static class TagsLayers
     public static readonly LayerMask InteractableLayerMask = LayerMask.GetMask("Interactable");
 
     public static readonly int PlayerLayerMaskIndex = LayerMask.NameToLayer("Player");
-    public static readonly int EnemyLayerMaskIndex = LayerMask.NameToLayer("Enemy");
+    public static readonly int EnemyLayerMaskIndex = LayerMask.NameToLayer("E
 }
