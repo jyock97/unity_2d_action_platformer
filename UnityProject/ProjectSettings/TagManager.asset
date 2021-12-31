@@ -6,6 +6,8 @@ TagManager:
   tags:
   - GroundWall
   - Enemy
+  - Interactable
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - GroundWall
   - Player
   - Enemy
-  - 
+  - Interactable
   - 
   - 
   - 

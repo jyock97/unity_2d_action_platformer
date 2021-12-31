@@ -1,111 +1,63 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : EntityController
 {
-    public bool isGrounded;
-    public bool isTouchingLeftWall;
-    public bool isTouchingRightWall;
-    
-    private Collider2D _collider;
-    private Animator _animator;
-    private Bounds _isGroundedBoundsCheck;
-    private Bounds _isTouchingLeftWallCheck;
-    private Bounds _isTouchingRightWallCheck;
+    public bool isCrouching;
+    public bool isMeleeAttacking;
+    public PlayerInventory playerInventory;
 
-    private void OnValidate()
+    private void Awake()
     {
-        _collider = GetComponent<BoxCollider2D>();
-        CalculateBounds();
+        playerInventory = new PlayerInventory();
+        Physics2D.IgnoreLayerCollision(TagsLayers.PlayerLayerMaskIndex, TagsLayers.EnemyLayerMaskIndex , false);
     }
 
-    private void Start()
+    protected override void Start()
     {
-        _collider = GetComponent<BoxCollider2D>();
-        _animator = GetComponent<Animator>();
+        base.Start();
+
+        lookingDirection = Vector2.right;
+        _LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask;
     }
 
-    private void Update()
+    protected override void Update()
     {
-        CalculateBounds();
-        IsGrounded();
-        isTouchingWalls();
+        base.Update();
         
-        _animator.SetBool("isGrounded", isGrounded);
+        _Animator.SetBool("isGrounded", isGrounded);
     }
 
-    private void CalculateBounds()
+    protected override void Die()
     {
-        // Ground bounds
-        Vector2 origin = _collider.bounds.min;
-        origin.x = _collider.bounds.center.x;
-        origin.y -= 0.15f;
-        Vector2 size = _collider.bounds.size;
-        size.y = 0.2f;
-        _isGroundedBoundsCheck.center = origin;
-        _isGroundedBoundsCheck.size = size;
-        
-        // Left Wall bounds
-        origin = _collider.bounds.center;
-        origin.x -= _collider.bounds.extents.x + 0.1f;
-        size = _collider.bounds.size;
-        size.x = 0.1f;
-        _isTouchingLeftWallCheck.center = origin;
-        _isTouchingLeftWallCheck.size = size;
-        
-        // Right Wall bounds
-        origin = _collider.bounds.center;
-        origin.x += _collider.bounds.extents.x + 0.1f;
-        size = _collider.bounds.size;
-        size.x = 0.1f;
-        _isTouchingRightWallCheck.center = origin;
-        _isTouchingRightWallCheck.size = size;
-    }
-    
-    private void IsGrounded()
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(_isGroundedBoundsCheck.center, _isGroundedBoundsCheck.size, 0, Vector2.down, 0, TagsLayers.GroundWallLayerMask);
-        isGrounded = hit.collider != null;
+        base.Die();
+        Physics2D.IgnoreLayerCollision(TagsLayers.PlayerLayerMaskIndex, TagsLayers.EnemyLayerMaskIndex);
+        StartCoroutine(GameOver());
     }
 
-    private void isTouchingWalls()
+    private IEnumerator GameOver()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size, 0, Vector2.down, 0, TagsLayers.GroundWallLayerMask);
-        isTouchingLeftWall = hit.collider != null;
-        
-        hit = Physics2D.BoxCast(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size, 0, Vector2.down, 0, TagsLayers.GroundWallLayerMask);
-        isTouchingRightWall = hit.collider != null;
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("GameOver");
     }
 
-    private void OnDrawGizmos()
+    private void OnCollisionStay2D(Collision2D other)
     {
-        if (GlobalGizmosControlelr.Player)
+        if (other.gameObject.CompareTag(TagsLayers.EnemyTag))
         {
-            if (isGrounded)
-            {
-                Gizmos.DrawWireCube(_isGroundedBoundsCheck.center, _isGroundedBoundsCheck.size);
-            }
-            else
-            {
-                Gizmos.DrawCube(_isGroundedBoundsCheck.center, _isGroundedBoundsCheck.size);
-            }
+            DealDamage(other.gameObject.transform.position);
+        }
+    }
 
-            if (isTouchingLeftWall)
-            {
-                Gizmos.DrawWireCube(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size);
-            }
-            else
-            {
-                Gizmos.DrawCube(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size);
-            }
-
-            if (isTouchingRightWall)
-            { 
-                Gizmos.DrawWireCube(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size);
-            }
-            else
-            {
-                Gizmos.DrawCube(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size);
-            }
+    protected override void OnDrawGizmos()
+    {
+        Color c = Color.blue;
+        c.a = 0.5f;
+        Gizmos.color = c;
+        if (GlobalGizmosController.Player)
+        {
+            base.OnDrawGizmos();
         }
     }
 }
