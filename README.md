@@ -315,8 +315,6 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 
 ### M3 [X]
 
-
-
 - Player
 
   - Crouch
@@ -330,7 +328,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
 - Dummy Enemy
   - Life
 
-### M4
+### M4 [X]
 
 
 - Enemy01
