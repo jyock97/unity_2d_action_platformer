@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
         
-        if (Input.GetMouseButtonDown(0))
+        if (!_playerController.startPushing && Input.GetMouseButtonDown(0))
         {
             _playerInventory.CurrentWeapon.Attack();
         }

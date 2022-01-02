@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class PlayerInventory
@@ -5,10 +6,12 @@ public class PlayerInventory
     public Weapon CurrentWeapon;
     
     private readonly List<Weapon> _weapons;
+    private readonly HashSet<String> _doorKeys;
 
     public PlayerInventory()
     {
         _weapons = new List<Weapon>();
+        _doorKeys = new HashSet<string>();
     }
 
     public void SelectWeapon(int index)
@@ -26,5 +29,15 @@ public class PlayerInventory
         {
             CurrentWeapon = _weapons[0];
         }
+    }
+
+    public void AddDoorKey(String doorKey)
+    {
+        _doorKeys.Add(doorKey);
+    }
+    
+    public bool ContainsDoorKey(String doorKey)
+    {
+        return _doorKeys.Contains(doorKey);
     }
 }
