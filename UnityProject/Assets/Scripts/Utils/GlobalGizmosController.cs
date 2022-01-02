@@ -22,6 +22,10 @@ public class GlobalGizmosController : MonoBehaviour
     public static bool EnemyAttackAlways;
     public bool enemyAttackOnHit;
     public static bool EnemyAttackOnHit;
+    
+    //----------Interactable Gizmos--------------
+    public bool linkedDoors;
+    public static bool LinkedDoors;
 
 
     private void SyncValues()
@@ -32,6 +36,7 @@ public class GlobalGizmosController : MonoBehaviour
         Enemies = enemies;
         EnemyAttackAlways = enemyAttackAlways;
         EnemyAttackOnHit = enemyAttackOnHit;
+        LinkedDoors = linkedDoors;
     }
     
     private void SetAll(bool flag)
@@ -42,6 +47,7 @@ public class GlobalGizmosController : MonoBehaviour
         enemies = flag;
         enemyAttackAlways = flag;
         enemyAttackOnHit = flag;
+        linkedDoors = flag;
     }
     
     private void OnValidate()

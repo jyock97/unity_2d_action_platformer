@@ -9,6 +9,8 @@ TagManager:
   - Interactable
   - Bullet
   - CameraBound
+  - Box
+  - HUDKeyInventory
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Player
   - Enemy
   - Interactable
-  - 
+  - Box
   - 
   - 
   - 

@@ -50,9 +50,12 @@ public class TeleportDoor : Interactable
         color.a = 0.5f;
         Gizmos.color = color;
 
-        if (linkedDoor == _linkedDoorTeleportDoor.gameObject && _linkedDoorTeleportDoor.linkedDoor == gameObject)
+        if (GlobalGizmosController.LinkedDoors)
         {
-            Gizmos.DrawLine(transform.position, linkedDoor.transform.position);
+            if (linkedDoor == _linkedDoorTeleportDoor.gameObject && _linkedDoorTeleportDoor.linkedDoor == gameObject)
+            {
+                Gizmos.DrawLine(transform.position, linkedDoor.transform.position);
+            }
         }
     }
 }

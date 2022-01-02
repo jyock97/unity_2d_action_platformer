@@ -133,4 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214c683f9a0a7b2479e29f50cf007c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIKeyHolder: {fileID: 67587575409196964, guid: 823d9f6991ac58c4485d41fdb86bc20f, type: 3}
   keyName: doorKey1

@@ -5,12 +5,17 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float runningMultiplier;
+    [SerializeField] private float pushingMultiplier;
 
     private PlayerController _playerController;
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private bool _isRunning;
+    private bool _isTouchingBox;
+    private bool _startPushing;
+    private bool _isPushing;
+    private bool _pauseAnim;
     private Vector2 _direction;
 
     private void Start()
@@ -42,16 +47,23 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
+        _isTouchingBox = (_playerController.lookingDirection == Vector2.left && _playerController.isTouchingLeftObject ||
+                              _playerController.lookingDirection == Vector2.right && _playerController.isTouchingRightObject) && 
+                             _playerController.leftRightTouchedObjectTag == TagsLayers.BoxTag;
+        
         _direction = Vector2.zero;
-        if (!_playerController.isHurt && !_playerController.isTouchingRightObject && Input.GetKey(KeyCode.D))
+        if (!_playerController.isHurt &&
+            (!_playerController.isTouchingRightObject || _isTouchingBox && _playerController.isGrounded) &&
+            Input.GetKey(KeyCode.D))
         {
             SetDirection(Vector2.right);
         }
 
-        if (!_playerController.isHurt && !_playerController.isTouchingLeftObject  && Input.GetKey(KeyCode.A))
+        if (!_playerController.isHurt &&
+            (!_playerController.isTouchingLeftObject || _isTouchingBox && _playerController.isGrounded) &&
+            Input.GetKey(KeyCode.A))
         {
             SetDirection(Vector2.left);
-
         }
 
         _isRunning = Input.GetKey(KeyCode.LeftShift);
@@ -60,16 +72,47 @@ public class PlayerMovement : MonoBehaviour
         {
             Move(_direction);
         }
+
+        _playerController.startPushing = _startPushing;
     }
 
     private void Move(Vector2 direction)
     {
+        bool isMoving = direction.x > 0.01 || direction.x < -0.01;
+        
         Vector2 newVelocity = direction;
-        newVelocity *= speed * (_isRunning? runningMultiplier: 1);
+        newVelocity *= speed * (_isPushing? pushingMultiplier : _isRunning? runningMultiplier: 1);
         newVelocity.y = _rigidbody.velocity.y;
         _rigidbody.velocity = newVelocity;
-        
+
+        if (_isTouchingBox && _playerController.isGrounded)
+        {
+            if (isMoving)
+            {
+                _startPushing = true;
+                _isPushing = true;
+                _pauseAnim = false;
+            }
+            else
+            {
+                _isPushing = false;
+            }
+            
+            if (_startPushing && !_isPushing)
+            {
+                _pauseAnim = true;
+            }
+        }
+        else
+        {
+            _startPushing = false;
+            _isPushing = false;
+            _pauseAnim = false;
+        }
+
         _animator.SetBool("isRunning", _isRunning);
         _animator.SetBool("isWalking", Math.Abs(newVelocity.x) > 0.01);
+        _animator.SetBool("isPushing", _startPushing);
+        _animator.speed = _pauseAnim ? 0 : 1;
     }
 }

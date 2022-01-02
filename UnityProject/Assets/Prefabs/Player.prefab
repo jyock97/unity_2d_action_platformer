@@ -237,6 +237,7 @@ MonoBehaviour:
   isGrounded: 0
   isTouchingLeftObject: 0
   isTouchingRightObject: 0
+  leftRightTouchedObjectTag: 
   lookingDirection: {x: 0, y: 0}
   maxLife: 8
   life: 0
@@ -246,6 +247,7 @@ MonoBehaviour:
   isDead: 0
   isCrouching: 0
   isMeleeAttacking: 0
+  startPushing: 0
 --- !u!114 &3366126324474927380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   runningMultiplier: 1.6
+  pushingMultiplier: 0.6
 --- !u!114 &385858016379998052
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class PlayerController : EntityController
 {
     public bool isCrouching;
     public bool isMeleeAttacking;
+    public bool startPushing;
     public PlayerInventory playerInventory;
 
     private void Awake()
@@ -19,7 +20,7 @@ public class PlayerController : EntityController
         base.Start();
 
         lookingDirection = Vector2.right;
-        _LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask;
+        _LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask | TagsLayers.BoxLayerMask;
     }
 
     protected override void Update()

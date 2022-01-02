@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class EntityController : MonoBehaviour
     public bool isGrounded;
     public bool isTouchingLeftObject;
     public bool isTouchingRightObject;
+    public String leftRightTouchedObjectTag;
     public Vector2 lookingDirection;
 
     [SerializeField] protected int maxLife;
@@ -109,8 +111,7 @@ public class EntityController : MonoBehaviour
         Vector2 origin = bounds.min;
         origin.x = bounds.center.x;
         origin.y -= 0.15f;
-        Vector2 size = bounds.size;
-        size.y = 0.2f;
+        Vector2 size = new Vector2(0.3f, 0.1f);
         _isGroundedBoundsCheck.center = origin;
         _isGroundedBoundsCheck.size = size;
         
@@ -133,17 +134,26 @@ public class EntityController : MonoBehaviour
     
     private void IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(_isGroundedBoundsCheck.center, _isGroundedBoundsCheck.size, 0, Vector2.zero, 0, TagsLayers.GroundWallLayerMask);
+        RaycastHit2D hit = Physics2D.BoxCast(_isGroundedBoundsCheck.center, _isGroundedBoundsCheck.size, 0, Vector2.zero, 0, TagsLayers.GroundWallLayerMask | TagsLayers.BoxLayerMask);
         isGrounded = hit.collider != null;
     }
 
     private void IsTouchingLeftRightObjects()
     {
+        leftRightTouchedObjectTag = "";
         RaycastHit2D hit = Physics2D.BoxCast(_isTouchingLeftWallCheck.center, _isTouchingLeftWallCheck.size, 0, Vector2.zero, 0, _LeftRightObjectLayerMask);
         isTouchingLeftObject = hit.collider != null;
+        if (isTouchingLeftObject)
+        {
+            leftRightTouchedObjectTag = hit.collider.tag;
+        }
         
         hit = Physics2D.BoxCast(_isTouchingRightWallCheck.center, _isTouchingRightWallCheck.size, 0, Vector2.zero, 0, _LeftRightObjectLayerMask);
         isTouchingRightObject = hit.collider != null;
+        if (isTouchingRightObject)
+        {
+            leftRightTouchedObjectTag = hit.collider.tag;
+        }
     }
 
     protected virtual void OnDrawGizmos()
