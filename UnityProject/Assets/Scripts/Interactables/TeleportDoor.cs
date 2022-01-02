@@ -14,7 +14,7 @@ public class TeleportDoor : Interactable
 
     private void OnValidate()
     {
-        _linkedDoorTeleportDoor = linkedDoor.GetComponent<TeleportDoor>();
+        _linkedDoorTeleportDoor = linkedDoor != null ? linkedDoor.GetComponent<TeleportDoor>() : null;
     }
 
     private void Start()

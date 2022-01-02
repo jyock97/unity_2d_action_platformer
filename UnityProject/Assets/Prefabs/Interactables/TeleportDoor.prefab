@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 536788342894023931}
   - component: {fileID: 6013043727905393129}
   m_Layer: 9
-  m_Name: Door
+  m_Name: TeleportDoor
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
