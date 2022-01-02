@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Interactable
   - Bullet
+  - CameraBound
   layers:
   - Default
   - TransparentFX

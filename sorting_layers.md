@@ -7,6 +7,10 @@ Document used to keep track of all the Game Objects in unity that have a Sorting
 ## Ground
 
 - Ground: 0
+- Door: 1
+- DoorClose: 2
+- Key: 20
+- Box: 20
 - MeleeWeaponPickup: 50
 
 ## Entity

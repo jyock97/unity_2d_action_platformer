@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class PlayerInventory
@@ -26,5 +27,10 @@ public class PlayerInventory
         {
             CurrentWeapon = _weapons[0];
         }
+    }
+
+    public bool ContainsDoorKey(String doorKey)
+    {
+        return true;
     }
 }
