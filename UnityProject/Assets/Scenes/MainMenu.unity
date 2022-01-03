@@ -231,6 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8593a9f644a98a74386e96dba93c8636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startButton: {fileID: 1675551002}
+  exitButton: {fileID: 325628845}
   startMenuButtonImage: {fileID: 21300004, guid: 7f83de9ce1b2e9a4882fa64589108f14, type: 3}
   startMenuButtonHighlightImage: {fileID: 21300006, guid: 7f83de9ce1b2e9a4882fa64589108f14, type: 3}
 --- !u!114 &163142817
@@ -771,7 +773,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 163142816}
           m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-          m_MethodName: SetStartMenuHighLightImage
+          m_MethodName: HoverSelect
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 325628845}
@@ -784,19 +786,7 @@ MonoBehaviour:
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 163142816}
-          m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-          m_MethodName: SetStartMenuImage
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 325628845}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &603890787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,7 +1505,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: TestScene
+          m_StringArgument: Main
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1675551003
@@ -1575,7 +1565,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 163142816}
           m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-          m_MethodName: SetStartMenuHighLightImage
+          m_MethodName: HoverSelect
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 1675551002}
@@ -1588,19 +1578,7 @@ MonoBehaviour:
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 163142816}
-          m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-          m_MethodName: SetStartMenuImage
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1675551002}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &1760665721
 GameObject:
   m_ObjectHideFlags: 0
