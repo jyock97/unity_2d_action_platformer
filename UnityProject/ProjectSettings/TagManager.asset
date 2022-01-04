@@ -11,6 +11,7 @@ TagManager:
   - CameraBound
   - Box
   - HUDKeyInventory
+  - MovingPlatformPivot
   layers:
   - Default
   - TransparentFX

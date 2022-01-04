@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private Button startButton;
-    [SerializeField] private Button exitButton;
     [SerializeField] private Sprite startMenuButtonImage;
     [SerializeField] private Sprite startMenuButtonHighlightImage;
+    [SerializeField] private Button firstSelectedButton;
+    [SerializeField] private Button[] mainButtons;
 
     private void Start()
     {
-        startButton.Select();
+        firstSelectedButton.Select();
     }
 
     private void Update()
@@ -21,10 +21,13 @@ public class UIController : MonoBehaviour
         if (EventSystem.current.currentSelectedGameObject == null &&
             Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0)
         {
-            startButton.Select();
-        } 
-        SelectDeselectButton(startButton);
-        SelectDeselectButton(exitButton);
+            firstSelectedButton.Select();
+        }
+
+        foreach (Button btn in mainButtons)
+        {
+            SelectDeselectButton(btn);
+        }
     }
 
     private void SelectDeselectButton(Button button)

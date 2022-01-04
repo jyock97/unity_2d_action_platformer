@@ -231,10 +231,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8593a9f644a98a74386e96dba93c8636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 1675551002}
-  exitButton: {fileID: 325628845}
   startMenuButtonImage: {fileID: 21300004, guid: 7f83de9ce1b2e9a4882fa64589108f14, type: 3}
   startMenuButtonHighlightImage: {fileID: 21300006, guid: 7f83de9ce1b2e9a4882fa64589108f14, type: 3}
+  firstSelectedButton: {fileID: 1675551002}
+  mainButtons:
+  - {fileID: 1675551002}
+  - {fileID: 325628845}
 --- !u!114 &163142817
 MonoBehaviour:
   m_ObjectHideFlags: 0

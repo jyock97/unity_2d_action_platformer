@@ -28,7 +28,7 @@ public class EnemyRunToTarget : EnemyState
     public override void Execute()
     {
         Vector2 enemyPosition = _EnemyController.transform.position;
-        if (Vector2.Distance(enemyPosition, _targetPosition) < 0.1f)
+        if (Vector2.Distance(enemyPosition, _targetPosition) < 0.5f)
         {
             _rigidbody.velocity = Vector2.zero;
             _animator.SetBool("isRunning", false);

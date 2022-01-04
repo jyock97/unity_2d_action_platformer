@@ -18,13 +18,12 @@ public class PlayerCrouch : MonoBehaviour
             return;
         }
         
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             _playerController.isCrouching = true;
             _animator.SetBool("isCrouching", true);
         }
-
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        else
         {
             _playerController.isCrouching = false;
             _animator.SetBool("isCrouching", false);
