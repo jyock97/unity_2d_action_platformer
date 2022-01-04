@@ -7,6 +7,9 @@ Document used to keep track of all the Game Objects in unity that have a Sorting
 ## Ground
 
 - Ground: 0
+- NormalPlatform: 0
+- MovingPlatform: 0
+- PressurePad: 1
 - Door: 1
 - DoorClose: 2
 - Box: 20

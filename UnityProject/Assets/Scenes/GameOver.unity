@@ -807,6 +807,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMenuButtonImage: {fileID: 21300004, guid: 7f83de9ce1b2e9a4882fa64589108f14, type: 3}
   startMenuButtonHighlightImage: {fileID: 21300006, guid: 7f83de9ce1b2e9a4882fa64589108f14, type: 3}
+  firstSelectedButton: {fileID: 560759548}
+  mainButtons:
+  - {fileID: 560759548}
 --- !u!1 &1687770479
 GameObject:
   m_ObjectHideFlags: 0
