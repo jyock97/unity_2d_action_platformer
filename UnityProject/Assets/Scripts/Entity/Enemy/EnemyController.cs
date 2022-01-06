@@ -36,7 +36,7 @@ public class EnemyController : EntityController
         
         Physics2D.IgnoreLayerCollision(TagsLayers.EnemyLayerMaskIndex, TagsLayers.EnemyLayerMaskIndex);
 
-        _LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask | TagsLayers.PlayerLayerMask;
+        _LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask | TagsLayers.BoxLayerMask | TagsLayers.PlayerLayerMask;
 
         InitEnemyStates();
     }
@@ -127,6 +127,11 @@ public class EnemyController : EntityController
     
     private void PlayerOnSight()
     {
+        if (!isGrounded)
+        {
+            return;
+        }
+        
         RaycastHit2D hit = Physics2D.BoxCast(_sightBox.center, _sightBox.size, 0, Vector2.zero, 0, TagsLayers.PlayerLayerMask);
         if (hit.collider != null)
         {

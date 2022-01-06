@@ -20,7 +20,7 @@ public class Key : Interactable
     public override void Interact()
     {
         _playerInventory.AddDoorKey(keyName);
-        GameObject go = Instantiate(UIKeyHolder, _keyInventory.transform, true);
+        GameObject go = Instantiate(UIKeyHolder, _keyInventory.transform, false);
         Destroy(gameObject);
     }
 }

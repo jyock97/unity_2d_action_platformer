@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         
-        if (_playerController.isDead)
+        if (UIController.UIActive || _playerController.isDead)
         {
             return;
         }

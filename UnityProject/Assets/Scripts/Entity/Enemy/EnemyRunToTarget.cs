@@ -8,8 +8,7 @@ public class EnemyRunToTarget : EnemyState
     {
         public float movementSpeed;
     }
-
-
+    
     private readonly Rigidbody2D _rigidbody;
     private readonly Animator _animator;
     private readonly SpriteRenderer _spriteRenderer;
@@ -35,8 +34,8 @@ public class EnemyRunToTarget : EnemyState
             _EnemyController.ChangeEnemyState(EnemyStates.EnemyIdleWait);
             return;
         }
-        if (_EnemyController.isTouchingLeftObject ||
-            _EnemyController.isTouchingRightObject)
+        if (_EnemyController.isTouchingLeftObject || _EnemyController.isTouchingRightObject &&
+            _EnemyController.leftRightTouchedObjectTag == TagsLayers.PlayerTag)
         {
             _rigidbody.velocity = Vector2.zero;
             _animator.SetBool("isRunning", false);

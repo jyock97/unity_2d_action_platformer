@@ -17,12 +17,15 @@ public class PlayerJump : MonoBehaviour
     
     private void Update()
     {
-        if (_playerController.isDead)
+        if (UIController.UIActive || _playerController.isDead)
         {
             return;
         }
         
-        if (!_playerController.isHurt && _playerController.isGrounded && !_playerController.isCrouching && Input.GetKeyDown(KeyCode.Space))
+        if (!_playerController.isHurt &&
+            _playerController.isGrounded &&
+            !_playerController.isCrouching &&
+            Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }

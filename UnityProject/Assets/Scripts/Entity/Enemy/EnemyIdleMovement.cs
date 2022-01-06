@@ -36,12 +36,12 @@ public class EnemyIdleMovement : EnemyState
         _animator.SetBool("isMoving", true);
         _spriteRenderer.flipX = _movementDirection == Vector2.left;
         _EnemyController.lookingDirection = _movementDirection;
-        if (_EnemyController.isTouchingLeftObject)
+        if (_EnemyController.isTouchingLeftObject && _EnemyController.leftRightTouchedObjectTag == TagsLayers.GroundWallTag)
         {
             _movementDirection = Vector2.right;
             _spriteRenderer.flipX = false;
         }
-        if (_EnemyController.isTouchingRightObject)
+        if (_EnemyController.isTouchingRightObject && _EnemyController.leftRightTouchedObjectTag == TagsLayers.GroundWallTag)
         {
             _movementDirection = Vector2.left;
             _spriteRenderer.flipX = true;

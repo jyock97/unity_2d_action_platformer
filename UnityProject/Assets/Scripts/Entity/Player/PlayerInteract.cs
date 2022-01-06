@@ -12,7 +12,7 @@ public class PlayerInteract : MonoBehaviour
     
     private void Update()
     {
-        if (_playerController.isDead)
+        if (UIController.UIActive && _playerController.isDead)
         {
             return;
         }
