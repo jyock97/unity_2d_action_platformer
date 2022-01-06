@@ -358,7 +358,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Inventory
 - GUI Inventory
 
-### M6
+### M6 [X]
 
 
 - Level Design
@@ -368,7 +368,7 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Moving Platforms
   - Pressure Plate
 
-### M7
+### M7 [X]
 
 
 - Level Design

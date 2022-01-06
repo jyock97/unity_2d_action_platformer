@@ -43,7 +43,8 @@ public class HUDPlayerLifeController : MonoBehaviour
         for (int i = 0; i < life; i++)
         {
             _hearts[i] = Instantiate(heart);
-            _hearts[i].transform.SetParent(transform);
+            
+            _hearts[i].transform.SetParent(transform, false);
         }
     }
 
