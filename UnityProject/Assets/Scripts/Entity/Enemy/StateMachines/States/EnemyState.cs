@@ -8,11 +8,11 @@ public abstract class EnemyState
         EnemyIdleWait
     }
     
-    protected readonly EnemyController _EnemyController;
+    protected readonly StateMachine _StateMachine;
 
-    protected EnemyState(EnemyController enemyController)
+    protected EnemyState(StateMachine stateMachine)
     {
-        _EnemyController = enemyController;
+        _StateMachine = stateMachine;
     }
     
     public abstract void Execute();

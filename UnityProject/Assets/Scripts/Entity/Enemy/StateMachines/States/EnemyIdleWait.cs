@@ -12,7 +12,7 @@ public class EnemyIdleWait : EnemyState
     private EnemyIdleWaitData _data;
     private float _waitTime;
 
-    public EnemyIdleWait(EnemyController enemyController, EnemyIdleWaitData data) : base(enemyController)
+    public EnemyIdleWait(StateMachine stateMachine, EnemyIdleWaitData data) : base(stateMachine)
     {
         _data = data;
     }
@@ -21,7 +21,7 @@ public class EnemyIdleWait : EnemyState
     {
         if (Time.time > _waitTime)
         {
-            _EnemyController.ChangeEnemyState(EnemyStates.EnemyIdleMovement);
+            _StateMachine.ChangeEnemyState(EnemyStates.EnemyIdleMovement);
         }
     }
 

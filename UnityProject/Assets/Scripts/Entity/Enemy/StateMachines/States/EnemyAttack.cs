@@ -10,14 +10,12 @@ public class EnemyAttack : EnemyState
         public Vector2 attackHitBoxSize;
     }
 
-    private readonly Animator _animator;
     private readonly EnemyAttackData _data;
     private Bounds _hitBox;
     private bool _isAttacking;
 
-    public EnemyAttack(EnemyController enemyController, Animator animator, EnemyAttackData data) : base(enemyController)
+    public EnemyAttack(StateMachine stateMachine, EnemyAttackData data) : base(stateMachine)
     {
-        _animator = animator;
         _data = data;
         CalculateBounds();
     }
@@ -29,7 +27,7 @@ public class EnemyAttack : EnemyState
         if (!_isAttacking)
         {
             _isAttacking = true;
-            _animator.SetTrigger("attack");
+            _StateMachine.animator.SetTrigger("attack");
         }
     }
     
@@ -40,7 +38,7 @@ public class EnemyAttack : EnemyState
 
         if (hit.collider != null)
         {
-            hit.collider.gameObject.GetComponent<EntityController>().DealDamage(_EnemyController.transform.position);
+            hit.collider.gameObject.GetComponent<EntityController>().DealDamage(_StateMachine.transform.position);
         }
 
 #if UNITY_EDITOR
@@ -51,14 +49,14 @@ public class EnemyAttack : EnemyState
     public void AttackEnd()
     {
         _isAttacking = false;
-        _EnemyController.ChangeEnemyState(EnemyStates.EnemyIdleWait);
+        _StateMachine.ChangeEnemyState(EnemyStates.EnemyIdleWait);
     }
 
     private void CalculateBounds()
     {
         Vector2 newOffset = _data.attackHitBoxOffset;
-        newOffset.x *= _EnemyController.lookingDirection == Vector2.left ? -1 : 1;
-        Vector2 newPosition = _EnemyController.transform.position;
+        newOffset.x *= _StateMachine.enemyController.lookingDirection == Vector2.left ? -1 : 1;
+        Vector2 newPosition = _StateMachine.transform.position;
         newPosition += newOffset;
         _hitBox.center = newPosition;
         _hitBox.size = _data.attackHitBoxSize;
