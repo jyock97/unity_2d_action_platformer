@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    private GameController _gameController;
     private PlayerController _playerController;
     private PlayerInventory _playerInventory;
     private RangeWeapon _rangeWeapon;
 
     private void Start()
     {
+        _gameController = FindObjectOfType<GameController>();
         _playerController = GetComponent<PlayerController>();
         _rangeWeapon = GetComponent<RangeWeapon>();
         _playerInventory = _playerController.playerInventory;
@@ -16,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (UIController.UIActive || _playerController.isDead)
+        if (_gameController.currentGameMode != GameMode.Gameplay || _playerController.isDead)
         {
             return;
         }

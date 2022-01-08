@@ -34,7 +34,7 @@ public class EnemyRunToTarget : EnemyState
             _EnemyController.ChangeEnemyState(EnemyStates.EnemyIdleWait);
             return;
         }
-        if (_EnemyController.isTouchingLeftObject || _EnemyController.isTouchingRightObject &&
+        if ((_EnemyController.isTouchingLeftObject || _EnemyController.isTouchingRightObject) &&
             _EnemyController.leftRightTouchedObjectTag == TagsLayers.PlayerTag)
         {
             _rigidbody.velocity = Vector2.zero;

@@ -4,12 +4,14 @@ public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
 
+    private GameController _gameController;
     private PlayerController _playerController;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
 
     private void Start()
     {
+        _gameController = FindObjectOfType<GameController>();
         _playerController = GetComponent<PlayerController>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
@@ -17,7 +19,7 @@ public class PlayerJump : MonoBehaviour
     
     private void Update()
     {
-        if (UIController.UIActive || _playerController.isDead)
+        if (_gameController.currentGameMode != GameMode.Gameplay || _playerController.isDead)
         {
             return;
         }

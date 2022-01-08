@@ -204,7 +204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &451946142
 GameObject:
@@ -444,6 +444,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560759545}
   m_CullTransparentMesh: 1
+--- !u!1001 &598151359
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665233, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665234, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: currentGameMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517587675543665235, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
+      propertyPath: m_Name
+      value: GameController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 41d90419fb75a5641beecac0d7c3118b, type: 3}
 --- !u!1 &738791734
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +831,7 @@ RectTransform:
   - {fileID: 1928726946}
   - {fileID: 560759546}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -789,7 +850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8593a9f644a98a74386e96dba93c8636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiStartActive: 1
   canPauseGame: 0
   pauseMenu: {fileID: 0}
   startMenuButtonImage: {fileID: 21300004, guid: 7f83de9ce1b2e9a4882fa64589108f14, type: 3}
@@ -800,6 +860,8 @@ MonoBehaviour:
   selectables:
   - {fileID: 560759545}
   closeBtnSelectables: []
+  dropdownResolutions: {fileID: 0}
+  dropdownFullScreen: {fileID: 0}
 --- !u!1 &1687770479
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +926,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1928726945
 GameObject:

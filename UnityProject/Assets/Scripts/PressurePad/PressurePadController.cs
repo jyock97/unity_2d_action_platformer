@@ -24,10 +24,13 @@ public class PressurePadController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Color color = Color.green;
-        color.a = 0.5f;
-        Gizmos.color = color;
-        
-        Gizmos.DrawLine(transform.position, _activable.transform.position);
+        if (GlobalGizmosController.PressurePad)
+        {
+            Color color = Color.green;
+            color.a = 0.5f;
+            Gizmos.color = color;
+            
+            Gizmos.DrawLine(transform.position, _activable.transform.position);
+        }
     }
 }

@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public static bool UIActive;
-    [SerializeField] private bool uiStartActive;
     [SerializeField] private bool canPauseGame;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Sprite startMenuButtonImage;
@@ -21,9 +19,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Dropdown dropdownResolutions;
     [SerializeField] private TMP_Dropdown dropdownFullScreen;
 
-//    private Animator _animator;
-//    private bool _isCreditsOpen;
-
+    private GameController _gameController;
     private EventSystem _eventSystem;
     private Resolution[] _resolutions;
     private int _currentResolution;
@@ -32,11 +28,11 @@ public class UIController : MonoBehaviour
     
     private void Start()
     {
-        UIActive = uiStartActive;
+        _gameController = FindObjectOfType<GameController>();
+        
         _eventSystem = EventSystem.current;
         _eventSystem.SetSelectedGameObject(firstSelectedObj);
 
-//        _animator = GetComponent<Animator>();
 
         if (dropdownResolutions != null) SetResolutions();
         if (dropdownFullScreen != null) SetFullScreenModes();
@@ -44,7 +40,7 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if (UIActive)
+        if (_gameController.currentGameMode == GameMode.UI)
         {
             if (_eventSystem.currentSelectedGameObject == null &&
                 Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0)
@@ -66,24 +62,19 @@ public class UIController : MonoBehaviour
                 Resume();
             }
         }
-        else
+        else if (_gameController.currentGameMode == GameMode.Gameplay)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Pause();
             }
         }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            SetResolutions();
-        }
     }
 
     public void Pause()
     {
         Time.timeScale = 0;
-        UIActive = true;
+        _gameController.currentGameMode = GameMode.UI;
         if (pauseMenu != null)
         {
             pauseMenu.GetComponent<Animator>().SetTrigger("show");
@@ -93,7 +84,7 @@ public class UIController : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1;
-        UIActive = false;
+        _gameController.currentGameMode = GameMode.Gameplay;
         if (pauseMenu != null)
         {
             pauseMenu.GetComponent<Animator>().SetTrigger("hide");
@@ -202,25 +193,12 @@ public class UIController : MonoBehaviour
         {
             if (Screen.fullScreenMode.Equals(_fullScreenModes[i]))
             {
-                _currentResolution = i;
+                _currentFullScreenMode = i;
             }
 
             dropdownFullScreen.options.Add(new TMP_Dropdown.OptionData(_fullScreenModes[i].ToString()));
         }
 
-        dropdownFullScreen.value = _currentResolution;
+        dropdownFullScreen.value = _currentFullScreenMode;
     }
-
-//    // TEST!
-//    private int index = 0;
-//    public TextMeshProUGUI tmp;
-//    public void changeScreenResolution()
-//    {
-//        Debug.Log(index);
-//        Resolution sr = Screen.resolutions[index];
-//        tmp.text = sr.ToString();
-//        Screen.SetResolution(sr.width, sr.height, Screen.fullScreenMode);
-//        index++;
-//        index %= Screen.resolutions.Length;
-//    }
 }

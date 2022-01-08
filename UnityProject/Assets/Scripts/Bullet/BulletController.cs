@@ -43,7 +43,7 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag(TagsLayers.InteractableTag) && !other.CompareTag(TagsLayers.BulletTag))
+        if (other.CompareTag(TagsLayers.GroundWallTag) || other.CompareTag(TagsLayers.EnemyTag))
         {
             _rigidbody.velocity = Vector2.zero;
             _collider.enabled = false;
