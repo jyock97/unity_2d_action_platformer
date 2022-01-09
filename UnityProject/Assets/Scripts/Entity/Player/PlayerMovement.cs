@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runningMultiplier;
     [SerializeField] private float pushingMultiplier;
 
+    private GameController _gameController;
     private PlayerController _playerController;
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _spriteRenderer;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        _gameController = FindObjectOfType<GameController>();
         _playerController = GetComponent<PlayerController>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -42,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         
-        if (UIController.UIActive || _playerController.isDead)
+        if (_gameController.currentGameMode != GameMode.Gameplay || _playerController.isDead)
         {
             return;
         }

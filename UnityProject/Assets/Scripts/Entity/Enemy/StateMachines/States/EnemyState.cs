@@ -4,20 +4,21 @@ public abstract class EnemyState
     {
         EnemyIdleMovement,
         EnemyRunToTarget,
-        EnemyAttack,
+        EnemyMeleeAttack,
+        EnemyBeamAttack,
         EnemyIdleWait
     }
     
-    protected readonly EnemyController _EnemyController;
+    protected readonly StateMachine _StateMachine;
 
-    protected EnemyState(EnemyController enemyController)
+    protected EnemyState(StateMachine stateMachine)
     {
-        _EnemyController = enemyController;
+        _StateMachine = stateMachine;
     }
     
     public abstract void Execute();
-
-#if UNITY_EDITOR
+    
+    public abstract void Exit();
+    
     public abstract void DrawGizmos();
-#endif
 }

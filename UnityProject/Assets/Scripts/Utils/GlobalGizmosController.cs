@@ -18,15 +18,22 @@ public class GlobalGizmosController : MonoBehaviour
     //-------------Enemy Gizmos------------------
     public bool enemies;
     public static bool Enemies;
+    public bool allEnemyStates;
+    public static bool AllEnemyStates;
     public bool enemyAttackAlways;
     public static bool EnemyAttackAlways;
     public bool enemyAttackOnHit;
     public static bool EnemyAttackOnHit;
+    public bool bossFightArea;
+    public static bool BossFightArea;
     
     //----------Interactable Gizmos--------------
     public bool linkedDoors;
     public static bool LinkedDoors;
-
+    
+    //------------Activable Gizmos---------------
+    public bool pressurePad;
+    public static bool PressurePad;
 
     private void SyncValues()
     {
@@ -34,9 +41,12 @@ public class GlobalGizmosController : MonoBehaviour
         MeleeAttackAlways = meleeAttackAlways;
         MeleeAttackOnHit = meleeAttackOnHit;
         Enemies = enemies;
+        AllEnemyStates = allEnemyStates;
         EnemyAttackAlways = enemyAttackAlways;
         EnemyAttackOnHit = enemyAttackOnHit;
+        BossFightArea = bossFightArea;
         LinkedDoors = linkedDoors;
+        PressurePad = pressurePad;
     }
     
     private void SetAll(bool flag)
@@ -45,9 +55,12 @@ public class GlobalGizmosController : MonoBehaviour
         meleeAttackAlways = flag;
         meleeAttackOnHit = flag;
         enemies = flag;
+        allEnemyStates = flag;
         enemyAttackAlways = flag;
         enemyAttackOnHit = flag;
+        bossFightArea = flag;
         linkedDoors = flag;
+        pressurePad = flag;
     }
     
     private void OnValidate()

@@ -51,3 +51,6 @@ MonoBehaviour:
   enemies: 1
   enemyAttackAlways: 0
   enemyAttackOnHit: 1
+  bossFightArea: 1
+  linkedDoors: 1
+  pressurePad: 1

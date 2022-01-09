@@ -14,6 +14,8 @@ public class EntityController : MonoBehaviour
     [SerializeField] protected int life;
     [SerializeField] protected float invulnerableTime;
     [SerializeField] protected float knockbackForce;
+    
+    [SerializeField] private float _leftRightTouchObjectOffset;
 
     [HideInInspector] public bool isHurt;
     [HideInInspector] public bool isDead;
@@ -74,7 +76,7 @@ public class EntityController : MonoBehaviour
         }
     }
 
-    protected void Hurt(Vector2 damageOrigin)
+    protected virtual void Hurt(Vector2 damageOrigin)
     {
         life--;
         _Rigidbody.velocity = Vector2.zero;
@@ -117,7 +119,7 @@ public class EntityController : MonoBehaviour
         
         // Left Object bounds
         origin = bounds.center;
-        origin.x -= bounds.extents.x + 0.1f;
+        origin.x -= bounds.extents.x + _leftRightTouchObjectOffset;
         size = bounds.size;
         size.x = 0.1f;
         _isTouchingLeftWallCheck.center = origin;
@@ -125,7 +127,7 @@ public class EntityController : MonoBehaviour
         
         // Right Object bounds
         origin = bounds.center;
-        origin.x += bounds.extents.x + 0.1f;
+        origin.x += bounds.extents.x + _leftRightTouchObjectOffset;
         size = bounds.size;
         size.x = 0.1f;
         _isTouchingRightWallCheck.center = origin;

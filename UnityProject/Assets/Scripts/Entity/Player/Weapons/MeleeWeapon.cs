@@ -58,9 +58,7 @@ public class MeleeWeapon : Weapon
             raycastHit2D.collider.gameObject.GetComponent<EnemyController>().DealDamage(transform.position, WeaponType.Melee);
         }
 
-#if UNITY_EDITOR
         _onHitTime = Time.time + 0.25f;
-#endif
     }
 
     // Used by an Animation
@@ -68,9 +66,7 @@ public class MeleeWeapon : Weapon
     {
         _PlayerController.isMeleeAttacking = false;
     }
-
-
-#if UNITY_EDITOR
+    
     private float _onHitTime;
     private void OnDrawGizmos()
     {
@@ -91,5 +87,4 @@ public class MeleeWeapon : Weapon
             }
         }
     }
-#endif
 }

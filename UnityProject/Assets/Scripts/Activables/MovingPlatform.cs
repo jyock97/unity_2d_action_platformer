@@ -50,13 +50,11 @@ public class MovingPlatform : Activable
             _currentPivot = _pivotPositions[_currentPivotIndex];
         }
 
-#if UNITY_EDITOR
         if (calculatePivots)
         {
             CalculatePivots();
             calculatePivots = false;
         }
-#endif
     }
 
     public override void Activate()
