@@ -382,10 +382,9 @@ Naomi is a space archeologist, she has been assigned a task. Investigate one anc
   - Resume
   - Exit
 
-### M8
+### M8 [X]
 
 
 - Boss
 - GUI Boss Life
 - UI Thank You
-
