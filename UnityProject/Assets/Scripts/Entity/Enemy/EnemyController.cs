@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class EnemyController : EntityController
 {    
-    [SerializeField] private Weapon.WeaponType weaknessWeapon;
+    [SerializeField] protected Weapon.WeaponType weaknessWeapon;
+
+    private StateMachine _stateMachine;
 
     protected override void Start()
     {
@@ -11,6 +13,8 @@ public class EnemyController : EntityController
         Physics2D.IgnoreLayerCollision(TagsLayers.EnemyLayerMaskIndex, TagsLayers.EnemyLayerMaskIndex);
 
         _LeftRightObjectLayerMask = TagsLayers.GroundWallLayerMask | TagsLayers.BoxLayerMask | TagsLayers.PlayerLayerMask;
+
+        _stateMachine = GetComponent<StateMachine>();
     }
 
     public void Move(Vector2 direction, float speed)
@@ -33,17 +37,15 @@ public class EnemyController : EntityController
     {
         base.Die();
         _Rigidbody.simulated = false;
+        _stateMachine.Exit();
     }
 
     // Used by animation
-    private void DestroyEnemy()
+    protected virtual void DestroyEnemy()
     {
         Destroy(gameObject);
     }
     
-    
-
-#if UNITY_EDITOR
     protected override void OnDrawGizmos()
     {
         if (GlobalGizmosController.Enemies)
@@ -55,5 +57,4 @@ public class EnemyController : EntityController
             base.OnDrawGizmos();
         }
     }
-#endif
 }

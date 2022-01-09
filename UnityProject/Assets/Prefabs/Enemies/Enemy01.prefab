@@ -175,6 +175,7 @@ MonoBehaviour:
   life: 0
   invulnerableTime: 0
   knockbackForce: 0
+  _leftRightTouchObjectOffset: 0.15
   isHurt: 0
   isDead: 0
   weaknessWeapon: 0
@@ -191,20 +192,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerOnSight: 0
+  player: {fileID: 0}
   enemyController: {fileID: 7587974526889938005}
-  _Rigidbody: {fileID: 7587974526889937993}
-  _Collider: {fileID: 7587974526889937992}
+  pRigidbody: {fileID: 7587974526889937993}
   spriteRenderer: {fileID: 7587974526889937995}
   animator: {fileID: 7587974526889937994}
   enemyIdleMovementData:
     movementSpeed: 1.8
     startLeft: 0
   enemyRunToTargetData:
+    exitState: 4
     movementSpeed: 3.6
   enemyIdleWaitData:
+    exitState: 0
     waitTime: 1.5
-  enemyAttackData:
-    attackHitBoxOffset: {x: 0.8, y: 0.63}
-    attackHitBoxSize: {x: 0.95, y: 0.75}
+  enemyMeleeAttackData:
+    exitState: 4
+    attackHitBoxOffset: {x: 1, y: 0.4}
+    attackHitBoxSize: {x: 0.45, y: 0.8}
   sightBoxOffset: {x: 0, y: 0.4}
   sightBoxSize: {x: 12, y: 0.8}

@@ -5,23 +5,27 @@ public abstract class StateMachine : MonoBehaviour
 {
     public bool isPlayerOnSight;
     
+    [HideInInspector] public GameObject player;
     [HideInInspector] public EnemyController enemyController;
-    [HideInInspector] public Rigidbody2D _Rigidbody;
+    [HideInInspector] public Rigidbody2D pRigidbody;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public Animator animator;
 
     protected Dictionary<EnemyState.EnemyStates, EnemyState> _States;
+    
+    protected EnemyState.EnemyStates _CurrentStateType;
     protected EnemyState _CurrentState;
 
-    protected void OnValidate()
+    protected virtual void OnValidate()
     {
         Start();
     }
 
     protected virtual void Start()
     {
+        player = GameObject.FindWithTag(TagsLayers.PlayerTag);
         enemyController = GetComponent<EnemyController>();
-        _Rigidbody = GetComponent<Rigidbody2D>();
+        pRigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         
@@ -35,16 +39,39 @@ public abstract class StateMachine : MonoBehaviour
 
     public virtual void ChangeEnemyState(EnemyState.EnemyStates stateKey)
     {
+        _CurrentState.Exit();
+        _CurrentStateType = stateKey;
         _CurrentState = _States[stateKey];
+        switch (stateKey)
+        {
+            case EnemyState.EnemyStates.EnemyRunToTarget:
+                ((EnemyRunToTarget) _States[EnemyState.EnemyStates.EnemyRunToTarget]).SetTarget(player.transform.position);
+                break;
+            case EnemyState.EnemyStates.EnemyIdleWait:
+                ((EnemyIdleWait) _States[EnemyState.EnemyStates.EnemyIdleWait]).SetTime(Time.time);
+                break;
+        }
+    }
+
+    public virtual void Exit()
+    {
+        _CurrentState.Exit();
     }
 
     protected abstract void InitEnemyStates();
 
     protected virtual void OnDrawGizmos()
     {
-        foreach (KeyValuePair<EnemyState.EnemyStates,EnemyState> keyValuePair in _States)
+        if (GlobalGizmosController.AllEnemyStates)
         {
-            keyValuePair.Value.DrawGizmos();
+            foreach (KeyValuePair<EnemyState.EnemyStates,EnemyState> keyValuePair in _States)
+            {
+                keyValuePair.Value.DrawGizmos();
+            }
+        }
+        else
+        {
+            _CurrentState.DrawGizmos();
         }
     }
 }

@@ -9,6 +9,8 @@ public static class TagsLayers
     public static readonly string BulletTag = "Bullet";
     public static readonly string BoxTag = "Box";
     public static readonly string HUDKeyInventoryTag = "HUDKeyInventory";
+    public static readonly string BossShieldTag = "BossShield";
+    
 
     public static readonly LayerMask GroundWallLayerMask = LayerMask.GetMask("GroundWall");
     public static readonly LayerMask PlayerLayerMask = LayerMask.GetMask("Player");

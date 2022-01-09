@@ -4,7 +4,8 @@ public abstract class EnemyState
     {
         EnemyIdleMovement,
         EnemyRunToTarget,
-        EnemyAttack,
+        EnemyMeleeAttack,
+        EnemyBeamAttack,
         EnemyIdleWait
     }
     
@@ -16,8 +17,8 @@ public abstract class EnemyState
     }
     
     public abstract void Execute();
-
-#if UNITY_EDITOR
+    
+    public abstract void Exit();
+    
     public abstract void DrawGizmos();
-#endif
 }

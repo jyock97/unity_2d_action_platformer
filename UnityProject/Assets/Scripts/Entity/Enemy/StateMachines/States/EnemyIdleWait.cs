@@ -6,6 +6,7 @@ public class EnemyIdleWait : EnemyState
     [Serializable]
     public struct EnemyIdleWaitData
     {
+        public EnemyStates exitState;
         public float waitTime;
     }
 
@@ -21,16 +22,16 @@ public class EnemyIdleWait : EnemyState
     {
         if (Time.time > _waitTime)
         {
-            _StateMachine.ChangeEnemyState(EnemyStates.EnemyIdleMovement);
+            _StateMachine.ChangeEnemyState(_data.exitState);
         }
     }
+
+    public override void Exit() { }
 
     public void SetTime(float currentTime)
     {
         _waitTime = currentTime + _data.waitTime;
     }
 
-#if UNITY_EDITOR
     public override void DrawGizmos() { }
-#endif
 }

@@ -18,6 +18,8 @@ public class GlobalGizmosController : MonoBehaviour
     //-------------Enemy Gizmos------------------
     public bool enemies;
     public static bool Enemies;
+    public bool allEnemyStates;
+    public static bool AllEnemyStates;
     public bool enemyAttackAlways;
     public static bool EnemyAttackAlways;
     public bool enemyAttackOnHit;
@@ -39,6 +41,7 @@ public class GlobalGizmosController : MonoBehaviour
         MeleeAttackAlways = meleeAttackAlways;
         MeleeAttackOnHit = meleeAttackOnHit;
         Enemies = enemies;
+        AllEnemyStates = allEnemyStates;
         EnemyAttackAlways = enemyAttackAlways;
         EnemyAttackOnHit = enemyAttackOnHit;
         BossFightArea = bossFightArea;
@@ -52,6 +55,7 @@ public class GlobalGizmosController : MonoBehaviour
         meleeAttackAlways = flag;
         meleeAttackOnHit = flag;
         enemies = flag;
+        allEnemyStates = flag;
         enemyAttackAlways = flag;
         enemyAttackOnHit = flag;
         bossFightArea = flag;

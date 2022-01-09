@@ -6,6 +6,7 @@ public class EnemyRunToTarget : EnemyState
     [Serializable]
     public struct EnemyRunToTargetData
     {
+        public EnemyStates exitState;
         public float movementSpeed;
     }
     
@@ -22,17 +23,17 @@ public class EnemyRunToTarget : EnemyState
         Vector2 enemyPosition = _StateMachine.transform.position;
         if (Vector2.Distance(enemyPosition, _targetPosition) < 0.5f)
         {
-            _StateMachine._Rigidbody.velocity = Vector2.zero;
+            _StateMachine.pRigidbody.velocity = Vector2.zero;
             _StateMachine.animator.SetBool("isRunning", false);
-            _StateMachine.ChangeEnemyState(EnemyStates.EnemyIdleWait);
+            _StateMachine.ChangeEnemyState(_data.exitState);
             return;
         }
         if ((_StateMachine.enemyController.isTouchingLeftObject || _StateMachine.enemyController.isTouchingRightObject) &&
             _StateMachine.enemyController.leftRightTouchedObjectTag == TagsLayers.PlayerTag)
         {
-            _StateMachine._Rigidbody.velocity = Vector2.zero;
+            _StateMachine.pRigidbody.velocity = Vector2.zero;
             _StateMachine.animator.SetBool("isRunning", false);
-            _StateMachine.ChangeEnemyState(EnemyStates.EnemyAttack);
+            _StateMachine.ChangeEnemyState(EnemyStates.EnemyMeleeAttack);
             return;
         }
 
@@ -43,6 +44,11 @@ public class EnemyRunToTarget : EnemyState
         _StateMachine.enemyController.Move(movementDirection, _data.movementSpeed);
     }
 
+    public override void Exit()
+    {
+        _StateMachine.animator.SetBool("isRunning", false);
+    }
+
     public void SetTarget(Vector2 position)
     {
         Vector2 enemyPosition = _StateMachine.transform.position;
@@ -50,11 +56,9 @@ public class EnemyRunToTarget : EnemyState
         _targetPosition = position;
         _targetPosition.y = enemyPosition.y;
     }
-
-#if UNITY_EDITOR
+    
     public override void DrawGizmos()
     {
         Gizmos.DrawSphere(_targetPosition, 0.25f);
     }
-#endif
 }

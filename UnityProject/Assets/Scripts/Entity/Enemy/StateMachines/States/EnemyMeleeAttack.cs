@@ -1,20 +1,21 @@
 using System;
 using UnityEngine;
 
-public class EnemyAttack : EnemyState
+public class EnemyMeleeAttack : EnemyState
 {
     [Serializable]
-    public struct EnemyAttackData
+    public struct EnemyMeleeAttackData
     {
+        public EnemyStates exitState;
         public Vector2 attackHitBoxOffset;
         public Vector2 attackHitBoxSize;
     }
 
-    private readonly EnemyAttackData _data;
+    private readonly EnemyMeleeAttackData _data;
     private Bounds _hitBox;
     private bool _isAttacking;
 
-    public EnemyAttack(StateMachine stateMachine, EnemyAttackData data) : base(stateMachine)
+    public EnemyMeleeAttack(StateMachine stateMachine, EnemyMeleeAttackData data) : base(stateMachine)
     {
         _data = data;
         CalculateBounds();
@@ -30,7 +31,9 @@ public class EnemyAttack : EnemyState
             _StateMachine.animator.SetTrigger("attack");
         }
     }
-    
+
+    public override void Exit() { }
+
     // Used by an Animation
     public void Attack()
     {
@@ -41,15 +44,14 @@ public class EnemyAttack : EnemyState
             hit.collider.gameObject.GetComponent<EntityController>().DealDamage(_StateMachine.transform.position);
         }
 
-#if UNITY_EDITOR
         _onHitTime = Time.time + 0.25f;
-#endif
     }
 
+    // Used by an Animation
     public void AttackEnd()
     {
         _isAttacking = false;
-        _StateMachine.ChangeEnemyState(EnemyStates.EnemyIdleWait);
+        _StateMachine.ChangeEnemyState(_data.exitState);
     }
 
     private void CalculateBounds()
@@ -62,7 +64,6 @@ public class EnemyAttack : EnemyState
         _hitBox.size = _data.attackHitBoxSize;
     }
 
-#if UNITY_EDITOR
     private float _onHitTime;
     public override void DrawGizmos()
     {
@@ -81,5 +82,4 @@ public class EnemyAttack : EnemyState
             }
         }
     }
-#endif
 }

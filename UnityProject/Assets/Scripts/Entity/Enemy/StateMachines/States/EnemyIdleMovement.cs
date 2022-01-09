@@ -46,7 +46,7 @@ public class EnemyIdleMovement : EnemyState
         _StateMachine.enemyController.Move(_movementDirection, _data.movementSpeed);
     }
 
-#if UNITY_EDITOR
+    public override void Exit() { }
+    
     public override void DrawGizmos() { }
-#endif
 }

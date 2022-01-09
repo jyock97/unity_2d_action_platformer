@@ -24,6 +24,8 @@ Document used to keep track of all the Game Objects in unity that have a Sorting
 - Bullet: 25
 - Player: 50
 - Key: 60
+- Boss | Beam: 70
+- Boss | BeamPoint: 71
 
 ## Foreground
 

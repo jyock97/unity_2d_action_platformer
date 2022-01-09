@@ -10,7 +10,7 @@ public class Enemy01StateMachine : StateMachine
     [Header("EnemyIdleWaitData")]
     [SerializeField] private EnemyIdleWait.EnemyIdleWaitData enemyIdleWaitData;
     [Header("EnemyAttackData")]
-    [SerializeField] private EnemyAttack.EnemyAttackData enemyAttackData;
+    [SerializeField] private EnemyMeleeAttack.EnemyMeleeAttackData enemyMeleeAttackData;
     
     [SerializeField] private Vector2 sightBoxOffset;
     [SerializeField] private Vector2 sightBoxSize;
@@ -72,36 +72,22 @@ public class Enemy01StateMachine : StateMachine
         {
             {EnemyState.EnemyStates.EnemyIdleMovement, new EnemyIdleMovement(this, enemyIdleMovementData)},
             {EnemyState.EnemyStates.EnemyRunToTarget, new EnemyRunToTarget(this, enemyRunToTargetData)},
-            {EnemyState.EnemyStates.EnemyAttack, new EnemyAttack(this, enemyAttackData)},
+            {EnemyState.EnemyStates.EnemyMeleeAttack, new EnemyMeleeAttack(this, enemyMeleeAttackData)},
             {EnemyState.EnemyStates.EnemyIdleWait, new EnemyIdleWait(this, enemyIdleWaitData)},
         };
         _CurrentState = _States[EnemyState.EnemyStates.EnemyIdleMovement];
     }
     
-    public override void ChangeEnemyState(EnemyState.EnemyStates stateKey)
-    {
-        _CurrentState = _States[stateKey];
-        switch (stateKey)
-        {
-            case EnemyState.EnemyStates.EnemyRunToTarget:
-                ((EnemyRunToTarget) _States[EnemyState.EnemyStates.EnemyRunToTarget]).SetTarget(_playerPosition);
-                break;
-            case EnemyState.EnemyStates.EnemyIdleWait:
-                ((EnemyIdleWait) _States[EnemyState.EnemyStates.EnemyIdleWait]).SetTime(Time.time);
-                break;
-        }
-    }
-    
     // Used by animation
     private void Attack()
     {
-        ((EnemyAttack) _CurrentState).Attack();
+        ((EnemyMeleeAttack) _CurrentState).Attack();
     }
 
     // Used by animation
     private void AttackEnd()
     {
-        ((EnemyAttack) _CurrentState).AttackEnd();
+        ((EnemyMeleeAttack) _CurrentState).AttackEnd();
     }
 
     protected override void OnDrawGizmos()

@@ -12,6 +12,7 @@ TagManager:
   - Box
   - HUDKeyInventory
   - MovingPlatformPivot
+  - BossShield
   layers:
   - Default
   - TransparentFX
